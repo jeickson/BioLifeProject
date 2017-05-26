@@ -13,8 +13,27 @@
           </label>
         </div>
         <div class="col-md-2 pull-left text-center">
-          <a href="#">Advanced</a>
+          <a href="#" ng-click="filterAction='AdvancedFilter'">Advanced</a>
         </div>
+    </div>
+    <div class="row well" ng-show="filterAction=='AdvancedFilter'">
+      <div class="row text-center">
+        <h2>Advanced Filter</h2>
+      </div>
+      <div class="col-md-4 text-center">
+        <label for="Date">Date</label>
+        <select class="form form-control" name="Date">
+        </select>
+      </div>
+      <div class="col-md-4 text-center">
+        <label for="Specie">Specie</label>
+        <input type="text" class="form form-control" name="Specie" >
+      </div>
+      <div class="col-md-4 text-center">
+        <label for="Category">Category</label>
+        <select class="form form-control" name="Category">
+        </select>
+      </div>
     </div>
     <div class="row text-right">
       <div class="col-md-6 text-center well">

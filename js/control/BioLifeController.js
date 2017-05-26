@@ -10,6 +10,7 @@
 angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window', '$cookies','$filter',function ($scope, $window, $cookies,$filter){
       $scope.actionView='main';
       $scope.loginView=false;
+      $scope.filterAction;
       
         
        $scope.loginOpenClose=function(){
