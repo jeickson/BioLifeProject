@@ -1,5 +1,6 @@
 // jQuery code
 $(document).ready(function () {
+    /*-----------------Search-------------------*/
  var submitIcon = $('.searchbox-icon');
             var inputBox = $('.searchbox-input');
             var searchBox = $('.searchbox');
@@ -27,8 +28,15 @@ $(document).ready(function () {
                         submitIcon.click();
                     }
                 });
+      /*--------------------END------------------------*/
 });
-
+/*
+    * @name: buttonUp()
+    * @author: Jeicskon Frias Marte
+    * @version: 1.0
+    * @description: toggle input search
+    * @date: 20/03/2017
+*/
 function buttonUp(){
                 var inputVal = $('.searchbox-input').val();
                 inputVal = $.trim(inputVal).length;
@@ -38,20 +46,19 @@ function buttonUp(){
                     $('.searchbox-input').val('');
                     $('.searchbox-icon').css('display','block');
                 }
-            }
+}
+/*
+    * @name: toggleID()
+    * @author: Jeicskon Frias Marte
+    * @version: 1.0
+    * @description: toggle a element by id
+    * @date: 27/05/2017
+*/
+function toggleID(id){
+    
+    $('#'+id).toggle();
+}
 
-function loginColumn (){
-  			if($("#mainHeader").hasClass("asideClosed")){
-          $("#mainHeader").removeClass("asideClosed");
-          $("#mainHeader").addClass("asideOpened");
-  				$scope.actionView = 'login';
-      }
-      else{
-          $("#mainHeader").removeClass("asideOpened");
-          $("#mainHeader").addClass("asideClosed");
-  				$scope.actionView = 'main';
-      }
-  		}
 // Angular code
 (function(){
   var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination']);

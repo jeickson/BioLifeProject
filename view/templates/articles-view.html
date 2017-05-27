@@ -1,6 +1,7 @@
-  <main class="col-md-12">
-  <div class="col-md-12  pull-right">
-    <div class="row text-right well">
+  <main class="col-md-12 ">
+      
+
+    <div class=" row text-right well ">
         <div class="col-md-10 pull-right ">
           <label class="radio-inline">
             <input type="radio" name="optradio">Alphabet
@@ -12,14 +13,13 @@
             <input type="radio" name="optradio">Most Liked
           </label>
         </div>
-        <div class="col-md-2 pull-left text-center">
-          <a href="#" ng-click="filterAction='AdvancedFilter'">Advanced</a>
+        <div class="col-md-1 pull-left text-left">
+            <a href="#" class="btn btn-default" onclick="toggleID('advancedFilter')" >Advanced <span class="glyphicon glyphicon-menu-down"></span></a>
         </div>
     </div>
-    <div class="row well" ng-show="filterAction=='AdvancedFilter'">
-      <div class="row text-center">
-        <h2>Advanced Filter</h2>
-      </div>
+      <!-----toggle advanced filter---------->
+    <div class="row well" id="advancedFilter" >
+      
       <div class="col-md-4 text-center">
         <label for="Date">Date</label>
         <select class="form form-control" name="Date">
@@ -35,76 +35,86 @@
         </select>
       </div>
     </div>
-    <div class="row text-right">
-      <div class="col-md-6 text-center well">
-          <div class="media">
-          	<a class="pull-left" href="#">
-        		<img class="media-object" src="http://placekitten.com/150/150">
-      		  </a>
-      		<div class="media-body">
-        		<h4 class="media-heading">Receta 1</h4>
-              <p class="text-right">By Francisco</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-              Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-              dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-              Aliquam in felis sit amet augue.</p>
-              <ul class="list-inline list-unstyled">
-      			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-                <li>|</li>
-                <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-                <li>|</li>
-                <li>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
-                </li>
-                <li>|</li>
-                <li>
-                <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-                  <span><i class="fa fa-facebook-square"></i></span>
-                  <span><i class="fa fa-twitter-square"></i></span>
-                  <span><i class="fa fa-google-plus-square"></i></span>
-                </li>
-    			</ul>
-           </div>
+      <!-----------------END-------------->
+      
+    <div class="row">
+          
+    
+        <div class="col-md-4">
+                  
+                    <div class="panel panel-default">
+                       <div class="panel-heading"><strong><a class="post-title" href="#">Post Title</a></strong></div>
+                           <div class="panel-body">
+                               <div class="col-md-6">
+                                   <a href="#" class="thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
+                               </div>     
+                               <p>
+                                   Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. 
+                                   Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, 
+                                   ea mei omittam explicari conclusionemque ad nobis propriae quaerendum sea.
+                                   sum dolor sit amet, id nec conceptam conclusionemque.sum dolor sit amet.
+                               </p>
+
+                            </div>                  
+                            <div class="panel-footer">
+                                <span class="glyphicon glyphicon-user" id="start"></span> <label id="started">By</label> <a href="#" id="startedby">Admin</a> | 
+                                <span class="glyphicon glyphicon-eye-open" id="visit"></span> <a href="#" id="visited">Visited</a> | 
+                                <span class="glyphicon glyphicon-comment" id="comment"></span> <a href="#" id="comments">Comments</a> | 
+                                <a href="#"><span class="label label-info">Tutorials</span></a>
+                            </div>
+                   </div>
+              
         </div>
-      </div>
-        <div class="col-md-6 text-center well">
-          <div class="media">
-          	<a class="pull-left" href="#">
-        		<img class="media-object" src="http://placekitten.com/150/150">
-      		</a>
-      		<div class="media-body">
-        		<h4 class="media-heading">Receta 1</h4>
-              <p class="text-right">By Francisco</p>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra varius quam sit amet vulputate.
-              Quisque mauris augue, molestie tincidunt condimentum vitae, gravida a libero. Aenean sit amet felis
-              dolor, in sagittis nisi. Sed ac orci quis tortor imperdiet venenatis. Duis elementum auctor accumsan.
-              Aliquam in felis sit amet augue.</p>
-              <ul class="list-inline list-unstyled">
-      			<li><span><i class="glyphicon glyphicon-calendar"></i> 2 days, 8 hours </span></li>
-                <li>|</li>
-                <span><i class="glyphicon glyphicon-comment"></i> 2 comments</span>
-                <li>|</li>
-                <li>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star"></span>
-                  <span class="glyphicon glyphicon-star-empty"></span>
-                </li>
-                <li>|</li>
-                <li>
-                <!-- Use Font Awesome http://fortawesome.github.io/Font-Awesome/ -->
-                  <span><i class="fa fa-facebook-square"></i></span>
-                  <span><i class="fa fa-twitter-square"></i></span>
-                  <span><i class="fa fa-google-plus-square"></i></span>
-                </li>
-    			</ul>
-           </div>
+        <div class="col-md-4">
+                  
+                    <div class="panel panel-default">
+                       <div class="panel-heading"><strong><a class="post-title" href="#">Post Title</a></strong></div>
+                           <div class="panel-body">
+                               <div class="col-md-6">
+                                   <a href="#" class="thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
+                               </div>     
+                               <p>
+                                   Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. 
+                                   Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, 
+                                   ea mei omittam explicari conclusionemque ad nobis propriae quaerendum sea.
+                                   sum dolor sit amet, id nec conceptam conclusionemque.sum dolor sit amet.
+                               </p>
+
+                            </div>                  
+                            <div class="panel-footer">
+                                <span class="glyphicon glyphicon-user" id="start"></span> <label id="started">By</label> <a href="#" id="startedby">Admin</a> | 
+                                <span class="glyphicon glyphicon-eye-open" id="visit"></span> <a href="#" id="visited">Visited</a> | 
+                                <span class="glyphicon glyphicon-comment" id="comment"></span> <a href="#" id="comments">Comments</a> | 
+                                <a href="#"><span class="label label-info">Tutorials</span></a>
+                            </div>
+                   </div>
+              
         </div>
-      </div>
-    </div>
+        <div class="col-md-4">
+                
+                    <div class="panel panel-default">
+                       <div class="panel-heading"><strong><a class="post-title" href="#">Post Title</a></strong></div>
+                           <div class="panel-body">
+                               <div class="col-md-6">
+                                   <a href="#" class="thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
+                               </div>     
+                               <p>
+                                   Lorem ipsum dolor sit amet, id nec conceptam conclusionemque. 
+                                   Et eam tation option. Utinam salutatus ex eum. Ne mea dicit tibique facilisi, 
+                                   ea mei omittam explicari conclusionemque ad nobis propriae quaerendum sea.
+                                   sum dolor sit amet, id nec conceptam conclusionemque.sum dolor sit amet.
+                               </p>
+
+                            </div>                  
+                            <div class="panel-footer">
+                                <span class="glyphicon glyphicon-user" id="start"></span> <label id="started">By</label> <a href="#" id="startedby">Admin</a> | 
+                                <span class="glyphicon glyphicon-eye-open" id="visit"></span> <a href="#" id="visited">Visited</a> | 
+                                <span class="glyphicon glyphicon-comment" id="comment"></span> <a href="#" id="comments">Comments</a> | 
+                                <a href="#"><span class="label label-info">Tutorials</span></a>
+                            </div>
+                   </div>
+             
+        </div>
+   </div>
+      
 </main>

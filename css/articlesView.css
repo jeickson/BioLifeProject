@@ -1,0 +1,14 @@
+#advancedFilter{
+    display: none;
+}
+/*articles*/
+
+#start { font-size: 1em; }
+#started { font-size: 1em; }
+#startedby { font-size: 1.2em; }
+#visited { font-size: 1.2em; }
+#visit { font-size: 1em; }
+#comments { font-size: 1.2em; }
+#comment { font-size: 1em; }
+.post-title { font-size: 1.5em; text-decoration: none; color: #990099; }
+.post-title:hover { text-decoration: none; color: #990099; }
