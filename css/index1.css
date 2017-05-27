@@ -16,14 +16,26 @@ html, body { height: 100%; width: 100%; margin: 0;}
 #logo{
     width: 100px;
 }
-#loginBtnDiv{
-
-    width: 80px;
+#cartBtnDiv{
+     width: 70px;
     padding: 0px;
     float: right;
     height: 60px;
 }
+#loginBtnDiv{
 
+    width: 70px;
+    padding: 0px;
+    float: right;
+    height: 60px;
+}
+#cartBtn{
+    width: 100%;
+    height: 100%;
+    margin-left: 0px;
+    padding-top:10px;
+    font-size: 1.5em;
+}
 #loginBtn{
     width: 100%;
     height: 100%;
@@ -38,9 +50,10 @@ html, body { height: 100%; width: 100%; margin: 0;}
 /* Search */
 
 #searchDiv{
+    position: relative;
     height: 70px;
-    float: right;
-    width: 75%;
+    float: right ;
+    width: 60%;
 }
 #formSearch{
     width: 100%;
@@ -99,7 +112,7 @@ html, body { height: 100%; width: 100%; margin: 0;}
 
 .searchbox-icon,
 .searchbox-submit{
-    width:80px;
+    width:70px;
     height:85%;
     display:block;
     position:absolute;
@@ -117,6 +130,7 @@ html, body { height: 100%; width: 100%; margin: 0;}
     border-radius: 0.2em;
     padding-top:15px;
     font-size: 1.5em;
+    border-radius: 5px;
 }
 
 .searchbox-open{
@@ -287,6 +301,12 @@ aside h2{
     font-size: 1.8em;
     display:none;
 }
+/*cart*/
+#cartBtnDiv .dropdown-menu{
+    position: absolute;
+    left:-120px !important;
+    min-width:260px !important;
+}
 /*Contact */
 .jumbotron {
 background: #5bc0de !important;
@@ -383,5 +403,14 @@ font-size: 24px;
 
      aside h2{
             font-size: 4em;
+    }
+    #cartBtnDiv{
+        width: 50px;
+        height: 45px;
+    }
+    #cartBtnDiv .dropdown-menu{
+        position: absolute;
+        left:-140px !important;
+        min-width:260px !important;
     }
 }
