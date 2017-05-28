@@ -65,16 +65,16 @@ function toggleID(id){
 
     
     //TEMPLATES
-     BioLifeApp.directive("loginView", function (){
-    return {
-      restrict: 'E',
-      templateUrl:"view/templates/login-view.html",
-      controller:function(){
+     BioLifeApp.directive("articleDetailsView", function (){
+        return {
+          restrict: 'E',
+          templateUrl:"view/templates/articleDetails-view.html",
+          controller:function(){
 
-      },
-      controllerAs: 'loginView'
-    };
-  });
+          },
+          controllerAs: 'articleDetailsView'
+        };
+      });
     BioLifeApp.directive("cartView", function (){
     return {
       restrict: 'E',
