@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Fontdiner+Swanky');
 @import url('https://fonts.googleapis.com/css?family=Baloo|Chewy|Lobster|Shrikhand|Ultra');
-html, body { height: 100%; width: 100%; margin: 0;}
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+html, body { height: 100%; width: 100%; margin: 0;font-family: 'Merriweather', serif !important;}
 #titleDiv{
     width: 100%;
-    font-family: 'Shrikhand', cursive;
+    font-family: 'Shrikhand', cursive !important;
 
     font-size: 7em;
 }
