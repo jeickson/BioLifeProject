@@ -53,7 +53,7 @@
                         <div  id="iconsHeaderDiv" class="col-xs-12  col-lg-4 ">
                                   
                                 <div id="loginBtnDiv">
-                                        <button class="btn btn-info" id="loginBtn" ng-click="loginOpenClose()"><span class="glyphicon glyphicon-user icon-size"></span></button>
+                                        <button class="btn btn-info" id="loginBtn" ng-click="asideOpenClose()"><span class="glyphicon glyphicon-user icon-size"></span></button>
                                  </div>
                                  <div id="cartBtnDiv" class="dropdown" >
                                      <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span></button>
@@ -119,13 +119,15 @@
                  <!-- Cart View-->
                  <cart-view ng-show="actionView==='cart'"></cart-view>
                 </div>
-                <!--aside-->
-                <aside id="logIn" class=" col-xs-12 col-md-3 col-sm-3 col-lg-3 well" ng-show="loginView" ng-controller="UserController as userCtrl">
-                <!------------------------------------------------------------LOGIN VIEW------------------------------------------------------->
-                <button class="btn btn-warning" id='btnLoginInside' ng-click="loginOpenClose()"><span class="glyphicon glyphicon-circle-arrow-right icon-size"></span></button>
-                <h2>Login</h2>
-                <div id="logoLoginDiv">
-                    <img src="img/login3.png">
+            <!--aside-->
+              <aside id="logIn" class=" col-xs-12 col-md-3 col-sm-3 col-lg-3 well" ng-show="loginView" ng-controller="UserController as userCtrl">
+                 <button class="btn btn-warning" id='btnLoginInside' ng-click="asideOpenClose()"><span class="glyphicon glyphicon-circle-arrow-right icon-size"></span></button>
+            <!------------------------------------------------------------NO LOGUED VIEW------------------------------------------------------->
+            <div ng-show="userlogged==0">
+
+                    <h2>Login</h2>
+                <div id="logoLoginDiv" class="col-lg-12 ">
+                    <img src="img/login3.png" class="img-responsive ">
                 </div>
 
                 <span id="logInError"></span>
@@ -153,83 +155,89 @@
                             Forgot the password?
                         </a>
                         </span>
-                        <span id="registerLink ">
+                        <span id="registerLink">
                          <a href="#" data-toggle="modal" data-target="#myModal" >
                             Join us now!
-                        </a>
-
+                        </a>                           
                         </span>
-                </div>
 
-                <!-------------------------------------------------------------END--------------------------------------------------------->
+                </div>  
+           </div>
+            <div ng-show="userlogged==1">
+                <div id="logoPerfilDiv">
+                    <img src="img/perfil.png">
+                </div>
+            </div>
+                    
+            <!-------------------------------------------------------------END--------------------------------------------------------->
             </aside>
-                <!-- Modal -->
-                <div class="modal fade" id="myModal" role="dialog">
-                  <div class="modal-dialog">
+           <!-- Modal -->
+             <div class="modal fade" id="myModal" role="dialog">
+                              <div class="modal-dialog">
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Register</h4>
-                      </div>
-                      <div class="modal-body">
-                          <!--Register Form-->
-                        <form  class="contact_form" action="controller" id="registerForm" method="post">
-                        <h2>Register new User</h2>
-                        <img id="registeIcon" src="img/register.png" alt="Register Icon">
-                        <table>
-                          <tr>
-                            <td colspan="2"><input type="text" name="Usuari" class="form form-control" placeholder="Username*" required /></td>
-                          </tr>
-                          <tr>
-                            <td><input type="password" class="form form-control" placeholder="Password" name="Password" required /></td>
-                            <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
-                          </tr>
-                          <tr>
-                            <td><input type="text" class="form form-control" placeholder="Name" name="Nom" required/></td>
-                            <td><input type="text" class="form form-control" placeholder="Surname" name="Cognoms" required/></td>
-                          </tr>
-                          <tr>
-                            <td colspan="2"><input type="text" class="form form-control" placeholder="DNI" name="DNI" required placeholder="12345678Z" maxlength="9" size="9" /></td>
-                          </tr>
-                          <tr>
-                            <td colspan="2"><input type="email" class="form form-control" placeholder="Email" name="Email" placeholder="name@something.com" /></td>
-                          </tr>
-                          <tr>
-                            <td colspan="2"><input type="text" class="form form-control" placeholder="Birthday" name="Data" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
-                          </tr>
-                          <tr>
-                            <td><input type="text" class="form form-control" placeholder="Company" name="Empresa"/></td>
-                            <td><input type="text" class="form form-control" placeholder="Department" name="Departament"/></td>
-                          </tr>
-                          <tr>
-                            <td><select class="form-control" name="Sexe">
-                              <option>Select Gender</option>
-                              <option value="Male">Male</option>
-                              <option value="Female">Female</option>
-                            </select></td>
-                            <td>
-                              <select name="Interessos_professionals" class="form-control" multiple="multiple" tabindex="1">
-                                <option value="medicina">Medicina</option>
-                                <option value="investigacio">Investigacio</option>
-                                <option value="educacio">Educacio</option>
-                                <option value="altres">Altres</option>
-                              </select>
-                          </tr>
-                          <tr>
-                            <td colspan="2"><input style="width:100%" class="btn btn-info" type="submit" name="ok" value="Register"/></td>
-                          </tr>
-                        </table>
-                    </form>
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Register</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                      <!--Register Form-->
+                                    <form  class="contact_form" action="controller" id="registerForm" method="post">
+                                    <h2>Register new User</h2>
+                                    <img id="registeIcon" src="img/register.png" alt="Register Icon">
+                                    <table>
+                                      <tr>
+                                        <td colspan="2"><input type="text" name="Usuari" class="form form-control" placeholder="Username*" required /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><input type="password" class="form form-control" placeholder="Password" name="Password" required /></td>
+                                        <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><input type="text" class="form form-control" placeholder="Name" name="Nom" required/></td>
+                                        <td><input type="text" class="form form-control" placeholder="Surname" name="Cognoms" required/></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2"><input type="text" class="form form-control" placeholder="DNI" name="DNI" required placeholder="12345678Z" maxlength="9" size="9" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2"><input type="email" class="form form-control" placeholder="Email" name="Email" placeholder="name@something.com" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2"><input type="text" class="form form-control" placeholder="Birthday" name="Data" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
+                                      </tr>
+                                      <tr>
+                                        <td><input type="text" class="form form-control" placeholder="Company" name="Empresa"/></td>
+                                        <td><input type="text" class="form form-control" placeholder="Department" name="Departament"/></td>
+                                      </tr>
+                                      <tr>
+                                        <td><select class="form-control" name="Sexe">
+                                          <option>Select Gender</option>
+                                          <option value="Male">Male</option>
+                                          <option value="Female">Female</option>
+                                        </select></td>
+                                        <td>
+                                          <select name="Interessos_professionals" class="form-control" multiple="multiple" tabindex="1">
+                                            <option value="medicina">Medicina</option>
+                                            <option value="investigacio">Investigacio</option>
+                                            <option value="educacio">Educacio</option>
+                                            <option value="altres">Altres</option>
+                                          </select>
+                                      </tr>
+                                      <tr>
+                                        <td colspan="2"><input style="width:100%" class="btn btn-info" type="submit" name="ok" value="Register"/></td>
+                                      </tr>
+                                    </table>
+                                </form>
 
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                      </div>
-                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
 
-                  </div>
-                </div>
+                              </div>
+            </div>         
     </body>
 </html>

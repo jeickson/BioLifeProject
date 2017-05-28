@@ -13,7 +13,7 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
       $scope.filterAction;
       
         
-       $scope.loginOpenClose=function(){
+       $scope.asideOpenClose=function(){
             
             if(!$scope.loginView){
                 $scope.loginView=true;

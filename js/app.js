@@ -63,6 +63,18 @@ function toggleID(id){
 (function(){
   var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination']);
 
+    
+    //TEMPLATES
+     BioLifeApp.directive("loginView", function (){
+    return {
+      restrict: 'E',
+      templateUrl:"view/templates/login-view.html",
+      controller:function(){
+
+      },
+      controllerAs: 'loginView'
+    };
+  });
     BioLifeApp.directive("cartView", function (){
     return {
       restrict: 'E',
