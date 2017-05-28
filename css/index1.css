@@ -338,6 +338,11 @@ font-size: 24px;
     height: auto;
    margin-bottom: 30px;
 }
+
+/*Article Details*/
+.blankContainer{
+    background-color: white !important;
+}
 /*Media query Responsive*/
 @media  (max-width:1305px)  {
     #titleDiv{
