@@ -196,27 +196,24 @@
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Register</h4>
+                                    <h2 class="text-center">Register</h2>
                                   </div>
                                   <div class="modal-body">
                                       <!--Register Form-->
-                                    <form  class="contact_form" action="controller" id="registerForm" method="post">
-                                    <h2>Register new User</h2>
-                                    <img id="registeIcon" src="img/register.png" alt="Register Icon">
-                                    <table>
+                                <form  class="contact_form" action="controller" id="registerForm" method="post">
+                                    
+                                    <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
+                                    <table class="table table-hover">
                                       <tr>
                                         <td colspan="2"><input type="text" name="Usuari" class="form form-control" placeholder="Username*" required /></td>
-                                      </tr>
-                                      <tr>
-                                        <td><input type="password" class="form form-control" placeholder="Password" name="Password" required /></td>
-                                        <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
                                       </tr>
                                       <tr>
                                         <td><input type="text" class="form form-control" placeholder="Name" name="Nom" required/></td>
                                         <td><input type="text" class="form form-control" placeholder="Surname" name="Cognoms" required/></td>
                                       </tr>
                                       <tr>
-                                        <td colspan="2"><input type="text" class="form form-control" placeholder="DNI" name="DNI" required placeholder="12345678Z" maxlength="9" size="9" /></td>
+                                        <td><input type="password" class="form form-control" placeholder="Password" name="Password" required /></td>
+                                        <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
                                       </tr>
                                       <tr>
                                         <td colspan="2"><input type="email" class="form form-control" placeholder="Email" name="Email" placeholder="name@something.com" /></td>
@@ -225,32 +222,14 @@
                                         <td colspan="2"><input type="text" class="form form-control" placeholder="Birthday" name="Data" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
                                       </tr>
                                       <tr>
-                                        <td><input type="text" class="form form-control" placeholder="Company" name="Empresa"/></td>
-                                        <td><input type="text" class="form form-control" placeholder="Department" name="Departament"/></td>
-                                      </tr>
-                                      <tr>
-                                        <td><select class="form-control" name="Sexe">
-                                          <option>Select Gender</option>
-                                          <option value="Male">Male</option>
-                                          <option value="Female">Female</option>
-                                        </select></td>
-                                        <td>
-                                          <select name="Interessos_professionals" class="form-control" multiple="multiple" tabindex="1">
-                                            <option value="medicina">Medicina</option>
-                                            <option value="investigacio">Investigacio</option>
-                                            <option value="educacio">Educacio</option>
-                                            <option value="altres">Altres</option>
-                                          </select>
-                                      </tr>
-                                      <tr>
-                                        <td colspan="2"><input style="width:100%" class="btn btn-info" type="submit" name="ok" value="Register"/></td>
+                                        <td colspan="2"><input  class="btn btn-info btn-block btn-lg" type="submit" name="ok" value="Register"/></td>
                                       </tr>
                                     </table>
                                 </form>
 
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                                   </div>
                                 </div>
 
