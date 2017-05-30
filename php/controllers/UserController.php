@@ -79,13 +79,13 @@ class UserControllerClass implements ControllerInterface {
 		$userObj = json_decode(stripslashes($this->getJsonData()));
 
 		$user = new userClass();
-		$user->setAll(0, $userObj->name, $userObj->surname1, $userObj->nick, $userObj->password, $userObj->address, $userObj->telephone, $userObj->mail, $userObj->birthDate, date("Y-m-d h:i:sa"), "0000-00-00", $userObj->active, $userObj->image, $userObj->city, $userObj->state, $userObj->userType);
+		$user->setAll(0, $userObj->nick, $userObj->password, $userObj->name, $userObj->surname, $userObj->email, $userObj->age, $userObj->birthdate, $userObj->address, $userObj->role);
 
 		$outPutData = array();
 		$outPutData[]= true;
 		$user->setId(UserADO::create($user));
 
-		//the senetnce returns de id of the user inserted
+		//the sentence returns de id of the user inserted
 		$outPutData[]= array($user->getAll());
 
 		return $outPutData;

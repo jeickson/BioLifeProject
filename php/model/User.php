@@ -221,23 +221,17 @@ class UserClass implements EntityInterface {
 	return $data;
     }
 
-    public function setAll($id, $name, $surname, $email, $age, $address, $telephone, $mail, $birthDate, $entryDate, $dropOutDate, $active, $image, $city, $state, $userType) {
-      	$this->setId($id);
-      	$this->setName($name);
-      	$this->setSurname($surname);
-      	$this->setEmail($email);
-      	$this->setAge($age);
-      	$this->setAddress($address);
-      	$this->setTelephone($telephone);
-      	$this->setMail($mail);
-      	$this->setBirthDate($birthDate);
-      	$this->setEntryDate($entryDate);
-      	$this->setDropOutDate($dropOutDate);
-      	$this->setActive($active);
-      	$this->setImage($image);
-        $this->setCity($city);
-        $this->setState($state);
-        $this->setUserType($userType);
+    public function setAll($id, $nick, $password, $name, $surname, $email, $age, $birthdate, $address, $role) {
+      $this->setId($id);
+      $this->setNick($nick);
+      $this->setPassword($password);
+      $this->setName($name);
+      $this->setSurname($surname);
+      $this->setEmail($email);
+      $this->setAge($age);
+      $this->setBirthdate($birthdate);
+      $this->setAddress($address);
+      $this->setRole($role);
     }
 
     public function toString() {

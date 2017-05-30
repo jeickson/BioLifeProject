@@ -169,6 +169,9 @@
             <!-------------------------------------------------------------END--------------------------------------------------------->
              <!------------------------------------------------------------LOGGED VIEW------------------------------------------------------->
             <div ng-show="userlogged==1">
+              <div class="text-center">
+                <h3>Welcome {{user.name}}</h3>
+              </div>
                 <div id="logoPerfilDiv">
                     <img src="img/perfil.png">
                 </div>
@@ -182,57 +185,57 @@
                          <button class="btn btn-block btn-info btn-lg" id="createArtBtn">Create Article</button>
                      </div>
                  </div>
-                 <button class="btn btn-danger btn-block btn-lg">Logout</button>
+                 <button class="btn btn-danger btn-block btn-lg" onclick="userCtrl.connection()">Logout</button>
 
             </div>
             <!-------------------------------------------------------------END--------------------------------------------------------->
             </aside>
-           <!-- Modal -->
+           <!-- Register Modal -->
              <div class="modal fade" id="myModal" role="dialog">
-                              <div class="modal-dialog">
+                <div class="modal-dialog">
 
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h2 class="text-center">Register</h2>
-                                  </div>
-                                  <div class="modal-body">
-                                      <!--Register Form-->
-                                <form  class="contact_form" action="controller" id="registerForm" method="post">
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h2 class="text-center">Register</h2>
+                    </div>
+                    <div class="modal-body">
+                        <!--Register Form-->
+                  <form  class="contact_form" id="registerForm" ng-submit="userCtrl.register()" novalidate>
 
-                                    <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
-                                    <table class="table table-hover">
-                                      <tr>
-                                        <td colspan="2"><input type="text" name="Usuari" class="form form-control" placeholder="Username*" required /></td>
-                                      </tr>
-                                      <tr>
-                                        <td><input type="text" class="form form-control" placeholder="Name" name="Nom" required/></td>
-                                        <td><input type="text" class="form form-control" placeholder="Surname" name="Cognoms" required/></td>
-                                      </tr>
-                                      <tr>
-                                        <td><input type="password" class="form form-control" placeholder="Password" name="Password" required /></td>
-                                        <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
-                                      </tr>
-                                      <tr>
-                                        <td colspan="2"><input type="email" class="form form-control" placeholder="Email" name="Email" placeholder="name@something.com" /></td>
-                                      </tr>
-                                      <tr>
-                                        <td colspan="2"><input type="text" class="form form-control" placeholder="Birthday" name="Data" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
-                                      </tr>
-                                      <tr>
-                                        <td colspan="2"><input  class="btn btn-info btn-block btn-lg" type="submit" name="ok" value="Register"/></td>
-                                      </tr>
-                                    </table>
-                                </form>
+                      <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
+                      <table class="table table-hover">
+                        <tr>
+                          <td colspan="2"><input type="text" name="Usuari" class="form form-control" placeholder="Username*" required /></td>
+                        </tr>
+                        <tr>
+                          <td><input type="text" class="form form-control" placeholder="Name" ng-model="user.nama" name="Nom" required/></td>
+                          <td><input type="text" class="form form-control" placeholder="Surname" name="Cognoms" required/></td>
+                        </tr>
+                        <tr>
+                          <td><input type="password" class="form form-control" ng-model="user.password" placeholder="Password" name="Password" required /></td>
+                          <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email" name="Email" placeholder="name@something.com" /></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input type="text" class="form form-control" ng-model="user.birthdate" placeholder="Birthday" name="Data" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
+                        </tr>
+                        <tr>
+                          <td colspan="2"><input  class="btn btn-info btn-block btn-lg" type="submit" name="ok" value="Register"/></td>
+                        </tr>
+                      </table>
+                  </form>
 
-                                  </div>
-                                  <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                  </div>
-                                </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    </div>
+                  </div>
 
-                              </div>
+                </div>
             </div>
     </body>
 </html>
