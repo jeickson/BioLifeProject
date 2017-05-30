@@ -123,17 +123,17 @@
                  <cart-view ng-show="actionView==='cart'"></cart-view>
                 </div>
             <!--aside-->
+
               <aside id="logIn" class=" col-xs-12 col-md-3 col-sm-3 col-lg-3 well" ng-show="loginView" ng-controller="UserController as userCtrl">
                  <button class="btn btn-warning" id='btnLoginInside' ng-click="asideOpenClose()"><span class="glyphicon glyphicon-circle-arrow-right icon-size"></span></button>
-            <!------------------------------------------------------------NO LOGGED VIEW------------------------------------------------------->
-            <div ng-show="userlogged==0">
-
-                    <h2>Login</h2>
+                <!------------------------------------------------------------NO LOGGED VIEW------------------------------------------------------->
+                <div ng-show="userlogged==0">
+                  <h2>Login</h2>
                 <div id="logoLoginDiv" class="col-lg-12 ">
                     <img src="img/login3.png" class="img-responsive ">
                 </div>
                 <form class="login" name="userConnection" ng-submit="userCtrl.connection()" novalidate>
-                <span id="logInError"></span>
+                <span id="logInError">{{errorLogIn}}</span>
                 <div id="loginInputDiv">
                     <div class="input-group inputSession">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
@@ -165,9 +165,10 @@
                         </span>
 
                 </div>
+                </form>
            </div>
             <!-------------------------------------------------------------END--------------------------------------------------------->
-             <!------------------------------------------------------------LOGGED VIEW------------------------------------------------------->
+            <!------------------------------------------------------------LOGGED VIEW------------------------------------------------------->
             <div ng-show="userlogged==1">
               <div class="text-center">
                 <h3>Welcome {{user.name}}</h3>
@@ -185,57 +186,13 @@
                          <button class="btn btn-block btn-info btn-lg" id="createArtBtn">Create Article</button>
                      </div>
                  </div>
-                 <button class="btn btn-danger btn-block btn-lg" onclick="userCtrl.connection()">Logout</button>
-
+                 <button class="btn btn-danger btn-block btn-lg" onclick="userCtrl.logOut()">Logout</button>
             </div>
             <!-------------------------------------------------------------END--------------------------------------------------------->
             </aside>
            <!-- Register Modal -->
-             <div class="modal fade" id="myModal" role="dialog">
-                <div class="modal-dialog">
-
-                  <!-- Modal content-->
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h2 class="text-center">Register</h2>
-                    </div>
-                    <div class="modal-body">
-                        <!--Register Form-->
-                  <form  class="contact_form" id="registerForm" ng-submit="userCtrl.register()" novalidate>
-
-                      <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
-                      <table class="table table-hover">
-                        <tr>
-                          <td colspan="2"><input type="text" name="Usuari" class="form form-control" placeholder="Username*" required /></td>
-                        </tr>
-                        <tr>
-                          <td><input type="text" class="form form-control" placeholder="Name" ng-model="user.nama" name="Nom" required/></td>
-                          <td><input type="text" class="form form-control" placeholder="Surname" name="Cognoms" required/></td>
-                        </tr>
-                        <tr>
-                          <td><input type="password" class="form form-control" ng-model="user.password" placeholder="Password" name="Password" required /></td>
-                          <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email" name="Email" placeholder="name@something.com" /></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input type="text" class="form form-control" ng-model="user.birthdate" placeholder="Birthday" name="Data" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
-                        </tr>
-                        <tr>
-                          <td colspan="2"><input  class="btn btn-info btn-block btn-lg" type="submit" name="ok" value="Register"/></td>
-                        </tr>
-                      </table>
-                  </form>
-
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    </div>
-                  </div>
-
-                </div>
+             <div class="modal fade" id="myModal" role="dialog" ng-controller="UserController as userControl">
+                <register-modal></register-modal>
             </div>
     </body>
 </html>

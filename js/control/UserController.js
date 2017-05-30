@@ -4,9 +4,9 @@
 
 		//scope variables
     $scope.userlogged=0;
-
 		$scope.userOption=0;
 		$scope.user = new User();
+		$scope.errorLogIn;
 
 		if (typeof (Storage) == "undefined")
 		{
@@ -70,18 +70,18 @@
 				{
 					if(angular.isArray(outPutData[1]))
 					{
-						alert(outPutData[1]);
+						$scope.errorLogIn = JSON.stringify(outPutData[1])	;
 					}
-					else {alert("There has been an error in the server, try later");}
+					else {$scope.errorLogIn = "There has been an error in the server, try later";}
 				}
 			});
 		}
 
-		this.register = function ()
+		this.Register = function ()
 		{
 			//copy
 			$scope.user = angular.copy($scope.user);
-
+			alert($scope.user);
 			//Server conenction to verify user's data
 			var promise = accessService.getData( "php/controllers/MainController.php", true, "POST", {controllerType:0,action:10010,jsonData:JSON.stringify($scope.user)});
 
@@ -143,6 +143,17 @@
 
 			},
 			controllerAs: 'userDataManagement'
+		};
+	});
+
+	angular.module('BioLifeApp').directive("registerModal", function (){
+		return {
+			restrict: 'E',
+			templateUrl:"view/templates/user-views/register-modal.html",
+			controller:function(){
+
+			},
+			controllerAs: 'registerModal'
 		};
 	});
 })();
