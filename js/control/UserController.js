@@ -3,8 +3,8 @@
 	angular.module("BioLifeApp").controller("UserController", ['$http','$scope', '$window', '$cookies','accessService', 'userConnected',function ($http, $scope, $window, $cookies, accessService, userConnected){
 
 		//scope variables
-                $scope.userlogged=0;
-                
+    $scope.userlogged=0;
+
 		$scope.userOption=0;
 		$scope.user = new User();
 
@@ -13,15 +13,15 @@
 			alert("Your browser is not compatible with sessions, upgrade your browser");
 		} else
 		{
-			if (sessionStorage.length > 0)
-			{
-				var objAux = JSON.parse(sessionStorage.getItem("userConnected"));
-
-				if (!isNaN(objAux.id))
-				{
-					$scope.user.construct(objAux.id, objAux.name, objAux.surname1, objAux.nick, objAux.password, objAux.address, objAux.telephone, objAux.mail, new Date(objAux.birthDate), objAux.entryDate, objAux.dropOutDate, objAux.active, objAux.image);
-				}
-			}
+			// if (sessionStorage.length > 0)
+			// {
+			// 	var objAux = JSON.parse(sessionStorage.getItem("userConnected"));
+			//
+			// 	if (!isNaN(objAux.id))
+			// 	{
+			// 		$scope.user.construct(objAux.id, objAux.name, objAux.surname1, objAux.nick, objAux.password, objAux.address, objAux.telephone, objAux.mail, new Date(objAux.birthDate), objAux.entryDate, objAux.dropOutDate, objAux.active, objAux.image);
+			// 	}
+			// }
 		}
 
 		$scope.passwordValid = true;
@@ -119,9 +119,8 @@
 			//copy
 			$scope.user = angular.copy($scope.user);
 
-
 			//Server conenction to verify user's data
-			var promise = accessService.getData( "php/controller/MainController.php", true, "POST", {controllerType:0,action:10000,jsonData:JSON.stringify($scope.user)});
+			var promise = accessService.getData( "php/controllers/MainController.php", true, "POST", {controllerType:0,action:10000,jsonData:JSON.stringify($scope.user)});
 
 			promise.then(function (outPutData) {
 				console.log(outPutData);
@@ -129,7 +128,7 @@
 				{
 					if (typeof(Storage) !== "undefined") {
 						sessionStorage.userConnected = JSON.stringify(outPutData[1][0]);
-						window.open("mainWindow.html", "_self");
+						$scope.userlogged=1;
 					} else {
 						alert("Your browser is not compatible with this application, upgrade it plase!");
 					}
@@ -145,18 +144,18 @@
 			});
 		}
 
-		$scope.setFile = function(element) {
-			$scope.currentFile = element.files[0];
-			var reader = new FileReader();
-
-			reader.onload = function(event) {
-				$scope.userImage = event.target.result
-				$scope.$apply();
-			}
-
-			// when the file is read it triggers the onload event above.
-			reader.readAsDataURL(element.files[0]);
-		}
+		// $scope.setFile = function(element) {
+		// 	$scope.currentFile = element.files[0];
+		// 	var reader = new FileReader();
+		//
+		// 	reader.onload = function(event) {
+		// 		$scope.userImage = event.target.result
+		// 		$scope.$apply();
+		// 	}
+		//
+		// 	// when the file is read it triggers the onload event above.
+		// 	reader.readAsDataURL(element.files[0]);
+		// }
 	}]);
 
 	angular.module('BioLifeApp').directive("userDataManagement", function (){

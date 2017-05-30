@@ -7,10 +7,7 @@
  * @date: 2017-05-10
 */
 
-require_once "UserControllerClass.php";
-require_once "ApplicationControllerClass.php";
-require_once "ReviewControllerClass.php";
-//require_once "FileControllerClass.php";
+require_once "UserController.php";
 
 function is_session_started()
 {

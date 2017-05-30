@@ -4,216 +4,244 @@
  * autor  Roberto Plana
  * version 2012/09
  */
- require_once "EntityInterface.php";
+require_once "EntityInterface.php";
+
 class UserClass implements EntityInterface {
+
+
     private $id;
-    private $name;
-    private $surname1;
     private $nick;
     private $password;
+    private $name;
+    private $surname;
+    private $email;
+    private $age;
+    private $birthdate;
     private $address;
-    private $telephone;
-    private $mail;
-    private $birthDate;
-    private $entryDate;
-    private $dropOutDate;
-    private $active;
-    private $image;
-    private $city;
-    private $state;
-    private $userType;
+    private $role;
 
-    //----------Data base Values---------------------------------------
-    private static $tableName = "users";
+
+    //----------Data base Values---------------------------------------;
+    private static $tableName = "Users";
     private static $colNameId = "id";
-    private static $colNameName = "name";
-    private static $colNameSurname1 = "surname1";
     private static $colNameNick = "nick";
     private static $colNamePassword = "password";
+    private static $colNameName = "name";
+    private static $colNameSurname = "surname";
+    private static $colNameEmail = "email";
+    private static $colNameAge = "age";
+    private static $colNameBirthdate = "birthdate";
     private static $colNameAddress = "address";
-    private static $colNameTelephone = "telephone";
-    private static $colNameMail = "mail";
-    private static $colNameBirthDate = "birthDate";
-    private static $colNameEntryDate = "entryDate";
-    private static $colNameDropOutDate = "dropOutDate";
-    private static $colNameActive = "active";
-    private static $colNameImage = "image";    
-    private static $colNameCity = "city";
-    private static $colNameState = "state";
-    private static $colNameUserType = "userType";
-        
-    function __construct() {
-    }
+    private static $colNameRole = "role";
 
-    public function getId() {
+    function __construct() {}
+
+    function getId() {
         return $this->id;
     }
-    
-    public function getName() {
-        return $this->name;
-    }
-    
-    public function getSurname1() {
-        return $this->surname1;
-    }
-    
-    public function getNick() {
+
+    function getNick() {
         return $this->nick;
     }
-    
-    public function getPassword() {
+
+    function getPassword() {
         return $this->password;
     }
-    
-    public function getAddress() {
+
+    function getName() {
+        return $this->name;
+    }
+
+    function getSurname() {
+        return $this->surname;
+    }
+
+    function getEmail() {
+        return $this->email;
+    }
+
+    function getAge() {
+        return $this->age;
+    }
+
+    function getBirthdate() {
+        return $this->birthdate;
+    }
+
+    function getAddress() {
         return $this->address;
     }
-    
-    public function getTelephone() {
-        return $this->telephone;
+
+    function getRole() {
+        return $this->role;
     }
 
-	public function getMail() {
-        return $this->mail;
-    }
-        
-    public function getBirthDate() {
-        return $this->birthDate;
-    }
-    
-    public function getEntryDate() {
-        return $this->entryDate;
-    }
-    
-    public function getDropOutDate() {
-        return $this->dropOutDate;
-    }
-    
-    public function getActive() {
-        return $this->active;
-    }
-    
-    public function getImage() {
-        return $this->image;
+    static function getTableName() {
+        return self::$tableName;
     }
 
-    public function getCity() {
-        return $this->city;
-    }
-    public function getState() {
-        return $this->state;
-    }
-    public function getUserType() {
-        return $this->userType;
+    static function getColNameId() {
+        return self::$colNameId;
     }
 
-   
-    public function setId($id) {
+    static function getColNameNick() {
+        return self::$colNameNick;
+    }
+
+    static function getColNamePassword() {
+        return self::$colNamePassword;
+    }
+
+    static function getColNameName() {
+        return self::$colNameName;
+    }
+
+    static function getColNameSurname() {
+        return self::$colNameSurname;
+    }
+
+    static function getColNameEmail() {
+        return self::$colNameEmail;
+    }
+
+    static function getColNameAge() {
+        return self::$colNameAge;
+    }
+
+    static function getColNameBirthdate() {
+        return self::$colNameBirthdate;
+    }
+
+    static function getColNameAddress() {
+        return self::$colNameAddress;
+    }
+
+    static function getColNameRole() {
+        return self::$colNameRole;
+    }
+
+    function setId($id) {
         $this->id = $id;
     }
-    public function setName($name) {
-        $this->name = $name;
-    }    
 
-	public function setSurname1($surname1) {
-        $this->surname1 = $surname1;
-    }
-    
-    public function setNick($nick) {
+    function setNick($nick) {
         $this->nick = $nick;
     }
-    
-    public function setPassword($password) {
+
+    function setPassword($password) {
         $this->password = $password;
     }
-    
-    public function setAddress($address) {
+
+    function setName($name) {
+        $this->name = $name;
+    }
+
+    function setSurname($surname) {
+        $this->surname = $surname;
+    }
+
+    function setEmail($email) {
+        $this->email = $email;
+    }
+
+    function setAge($age) {
+        $this->age = $age;
+    }
+
+    function setBirthdate($birthdate) {
+        $this->birthdate = $birthdate;
+    }
+
+    function setAddress($address) {
         $this->address = $address;
     }
-    
-    public function setTelephone($telephone) {
-        $this->telephone = $telephone;
+
+    function setRole($role) {
+        $this->role = $role;
     }
 
-	public function setMail($mail) {
-        $this->mail = $mail;
-    }
-        
-    public function setBirthDate($birthDate) {
-        $this->birthDate = $birthDate;
-    }
-    
-    public function setEntryDate($entryDate) {
-        $this->entryDate = $entryDate;
-    }
-    
-    public function setDropOutDate($dropOutDate) {
-        $this->dropOutDate = $dropOutDate;
-    }
-    
-    public function setActive($active) {
-        $this->active = $active;
-    }
-    
-    public function setImage($image) {
-		$this->image = $image;
+    static function setTableName($tableName) {
+        self::$tableName = $tableName;
     }
 
-    public function setCity($city) {
-        $this->city = $city;
+    static function setColNameId($colNameId) {
+        self::$colNameId = $colNameId;
     }
 
-    public function setState($state) {
-        $this->state = $state;
+    static function setColNameNick($colNameNick) {
+        self::$colNameNick = $colNameNick;
     }
 
-    public function setUserType($userType) {
-        $this->userType = $userType;
-    }    
-    	
+    static function setColNamePassword($colNamePassword) {
+        self::$colNamePassword = $colNamePassword;
+    }
+
+    static function setColNameName($colNameName) {
+        self::$colNameName = $colNameName;
+    }
+
+    static function setColNameSurname($colNameSurname) {
+        self::$colNameSurname = $colNameSurname;
+    }
+
+    static function setColNameEmail($colNameEmail) {
+        self::$colNameEmail = $colNameEmail;
+    }
+
+    static function setColNameAge($colNameAge) {
+        self::$colNameAge = $colNameAge;
+    }
+
+    static function setColNameBirthdate($colNameBirthdate) {
+        self::$colNameBirthdate = $colNameBirthdate;
+    }
+
+    static function setColNameAddress($colNameAddress) {
+        self::$colNameAddress = $colNameAddress;
+    }
+
+    static function setColNameRole($colNameRole) {
+        self::$colNameRole = $colNameRole;
+    }
+
     public function getAll() {
-		$data = array();
-		$data["id"] = $this->id;
-		$data["name"] = $this->name;
-		$data["surname1"] = $this->surname1;
-		$data["nick"] = $this->nick;
-		$data["password"] = $this->password;		
-		$data["address"] = $this->address;		
-		$data["telephone"] = $this->telephone;
-		$data["mail"] = $this->mail;
-		$data["birthDate"] = $this->birthDate;
-		$data["entryDate"] = $this->entryDate;
-		$data["dropOutDate"] = $this->dropOutDate;
-		$data["active"] = $this->active;
-		$data["image"] = $this->image;
-        $data["city"] = $this->city;
-        $data["state"] = $this->state;
-        $data["userType"] = $this->userType;
+  	$data = array();
 
-		return $data;
+    $data["id"] = $this->id;
+    $data["nick"] = $this->nick;
+    $data["password"] = $this->password;
+    $data["name"] = $this->name;
+    $data["surname"] = $this->surname;
+    $data["email"] = $this->email;
+    $data["age"] = $this->age;
+    $data["birthdate"] = $this->birthdate;
+    $data["address"] = $this->address;
+    $data["role"] = $this->role;
+
+	return $data;
     }
 
-    public function setAll($id, $name, $surname1, $nick, $password, $address, $telephone, $mail, $birthDate, $entryDate, $dropOutDate, $active, $image, $city, $state, $userType) {
-		$this->setId($id);
-		$this->setName($name);
-		$this->setSurname1($surname1);
-		$this->setNick($nick);
-		$this->setPassword($password);
-		$this->setAddress($address);
-		$this->setTelephone($telephone);
-		$this->setMail($mail);
-		$this->setBirthDate($birthDate);
-		$this->setEntryDate($entryDate);
-		$this->setDropOutDate($dropOutDate);
-		$this->setActive($active);
-		$this->setImage($image);
+    public function setAll($id, $name, $surname, $email, $age, $address, $telephone, $mail, $birthDate, $entryDate, $dropOutDate, $active, $image, $city, $state, $userType) {
+      	$this->setId($id);
+      	$this->setName($name);
+      	$this->setSurname($surname);
+      	$this->setEmail($email);
+      	$this->setAge($age);
+      	$this->setAddress($address);
+      	$this->setTelephone($telephone);
+      	$this->setMail($mail);
+      	$this->setBirthDate($birthDate);
+      	$this->setEntryDate($entryDate);
+      	$this->setDropOutDate($dropOutDate);
+      	$this->setActive($active);
+      	$this->setImage($image);
         $this->setCity($city);
         $this->setState($state);
         $this->setUserType($userType);
     }
 
     public function toString() {
-        $toString = "userClass[id=" . $this->id . "][name=" . $this->getName(). "][surname1=" . $this->getSurname1() . "][password=" . $this->password . "][email=" . $this->mail . "][city=".$this->city."][state=".$this->state."][userType=".$this->userType."]";
+        $toString = "User[id=" . $this->id . "][name=" . $this->getName(). "][surname=" . $this->getSurname() . "][age=" . $this->age . "][email=" . $this->mail . "][city=".$this->city."][state=".$this->state."][userType=".$this->userType."]";
 		return $toString;
     }
 }

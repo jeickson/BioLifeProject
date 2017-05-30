@@ -21,7 +21,7 @@ class DBConnect{
    /*Mètode per establir els paràmetres de la connexió*/
    private function setConnection(){
 
-      $this->server='http://provenapps.cat';
+      $this->server='localhost';
       $this->dataBase='dawbio1707';
       $this->user='dawbio1707';
       $this->password='qQaGzsse';
@@ -77,7 +77,7 @@ class DBConnect{
    public function executionInsert($sql,$vector){
 
    		$id=null;
-   		
+
 	   	if($this->link !=null){
 		   $this->stmt=$this->link->prepare($sql);
 		   try

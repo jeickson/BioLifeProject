@@ -13,20 +13,15 @@ class UserADO implements EntityInterfaceADO {
     //----------Data base Values---------------------------------------
     private static $tableName = "Users";
     private static $colNameId = "id";
-    private static $colNameName = "name";
-    private static $colNameSurname = "surname";
     private static $colNameNick = "nick";
     private static $colNamePassword = "password";
+    private static $colNameName = "name";
+    private static $colNameSurname = "surname";
+    private static $colNameEmail = "email";
+    private static $colNameAge = "age";
+    private static $colNameBirthdate = "birthdate";
     private static $colNameAddress = "address";
-    private static $colNameTelephone = "telephone";
-    private static $colNameMail = "mail";
-    private static $colNameBirthDate = "birthDate";
-    private static $colNameEntryDate = "entryDate";
-    private static $colNameDropOutDate = "dropOutDate";
-    private static $colNameActive = "active";
-    private static $colNameImage = "image";
-    private static $colNameCity = "city";
-    private static $colNameState = "state";
+    private static $colNameRole = "role";
 
     //---Databese management section-----------------------
     /**
@@ -58,38 +53,28 @@ class UserADO implements EntityInterfaceADO {
     public static function fromResultSet( $res ) {
 	//We get all the values form the query
 		$id = $res[ UserADO::$colNameId];
-        $name = $res[ UserADO::$colNameName ];
-        $surname = $res[ UserADO::$colNameSurname ];
-        $nick = $res[ UserADO::$colNameNick ];
-        $password = $res[ UserADO::$colNamePassword ];
-        $address = $res[ UserADO::$colNameAddress ];
-        $telephone = $res[ UserADO::$colNameTelephone ];
-        $mail = $res[ UserADO::$colNameMail ];
-        $birthDate = $res[ UserADO::$colNameBirthDate ];
-        $entryDate = $res[ UserADO::$colNameEntryDate ];
-        $dropOutDate = $res[ UserADO::$colNameDropOutDate ];
-        $active = $res[ UserADO::$colNameActive ];
-        $image = $res[ UserADO::$colNameImage ];
-        $city = $res[ UserADO::$colNameCity ];
-        $state = $res[ UserADO::$colNameState ];
+    $nick = $res[UserADO::$colNameNick];
+    $password = $res[UserADO::$colNamePassword];
+    $name = $res[UserADO::$colNameName];
+    $surname = $res[UserADO::$colNameSurname];
+    $email = $res[UserADO::$colNameEmail];
+    $age = $res[UserADO::$colNameAge];
+    $birthdate = $res[UserADO::$colNameBirthdate];
+    $address = $res[UserADO::$colNameAddress];
+    $role = $res[UserADO::$colNameRole];
 
-       	//Object construction
-       	$entity = new userClass();
-    		$entity->setId($id);
-    		$entity->setName($name);
-    		$entity->setsurname($surname);
-    		$entity->setNick($nick);
-    		$entity->setPassword($password);
-    		$entity->setAddress($address);
-    		$entity->setTelephone($telephone);
-    		$entity->setMail($mail);
-    		$entity->setBirthDate($birthDate);
-    		$entity->setEntryDate($entryDate);
-    		$entity->setDropOutDate($dropOutDate);
-    		$entity->setActive($active);
-    		$entity->setImage($image);
-    		$entity->setCity($city);
-    		$entity->setState($state);
+    //Object construction
+    $entity = new userClass();
+    $entity->setId($id);
+    $entity->setNick($nick);
+    $entity->setPassword($password);
+    $entity->setName($name);
+    $entity->setSurname($surname);
+    $entity->setEmail($email);
+    $entity->setAge($age);
+    $entity->setBirthdate($birthdate);
+    $entity->setAddress($address);
+    $entity->setRole($role);
 
 		return $entity;
     }

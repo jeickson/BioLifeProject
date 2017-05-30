@@ -52,12 +52,11 @@
                         </div>
 
                         <div  id="iconsHeaderDiv" class="col-xs-12  col-lg-4 ">
-                                  
-                                <div id="loginBtnDiv">
-                                        <button class="btn btn-info" id="loginBtn" ng-click="asideOpenClose()"><span class="glyphicon glyphicon-user icon-size"></span></button>
-                                 </div>
-                                 <div id="cartBtnDiv" class="dropdown" >
-                                     <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                            <div id="loginBtnDiv">
+                                <button class="btn btn-info" id="loginBtn" ng-click="asideOpenClose()"><span class="glyphicon glyphicon-user icon-size"></span></button>
+                            </div>
+                            <div id="cartBtnDiv" class="dropdown" >
+                              <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span></button>
                                      <ul class="dropdown-menu dropdown-cart" role="menu">
                                          <table class="table table-striped">
                                              <thead>
@@ -76,7 +75,7 @@
                                           <div class="divider"></div>
                                           <p class="text-center" ng-click="actionView='cart'"><a  href="">View Cart</a></p>
                                      </ul>
-                                </div>                                                                        
+                                </div>
                                  <div id="searchDiv" >
                                     <form  id="formSearch">
                                         <div class="searchbox">
@@ -133,12 +132,12 @@
                 <div id="logoLoginDiv" class="col-lg-12 ">
                     <img src="img/login3.png" class="img-responsive ">
                 </div>
-
+                <form class="login" name="userConnection" ng-submit="userCtrl.connection()" novalidate>
                 <span id="logInError"></span>
                 <div id="loginInputDiv">
                     <div class="input-group inputSession">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input id="email" type="email" class="form-control input-lg" name="email" ng-model="user.email" placeholder="Email Address">
+                        <input id="nick" type="text" class="form-control input-lg" name="nick" ng-model="user.nick" placeholder="Nick">
                     </div>
                     <div class="input-group inputSession">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
@@ -162,10 +161,10 @@
                         <span id="registerLink">
                          <a href="#" data-toggle="modal" data-target="#myModal" >
                             Join us now!
-                        </a>                           
+                        </a>
                         </span>
 
-                </div>  
+                </div>
            </div>
             <!-------------------------------------------------------------END--------------------------------------------------------->
              <!------------------------------------------------------------LOGGED VIEW------------------------------------------------------->
@@ -175,16 +174,16 @@
                 </div>
                 <div id="perfilGroupBtn" >
                      <div class="col-lg-6 well">
-                         <button class="btn btn-block btn-success btn-lg">My Perfil</button> 
-                         <button class="btn btn-block btn-primary btn-lg">My Articles</button> 
-                        <button class="btn btn-block  btn-basic btn-lg">My Favs</button> 
+                         <button class="btn btn-block btn-success btn-lg">My Perfil</button>
+                         <button class="btn btn-block btn-primary btn-lg">My Articles</button>
+                        <button class="btn btn-block  btn-basic btn-lg">My Favs</button>
                      </div>
                      <div class="col-lg-6 well">
-                         <button class="btn btn-block btn-info btn-lg" id="createArtBtn">Create Article</button> 
+                         <button class="btn btn-block btn-info btn-lg" id="createArtBtn">Create Article</button>
                      </div>
                  </div>
-                 <button class="btn btn-danger btn-block btn-lg">Logout</button> 
-                      
+                 <button class="btn btn-danger btn-block btn-lg">Logout</button>
+
             </div>
             <!-------------------------------------------------------------END--------------------------------------------------------->
             </aside>
@@ -201,7 +200,7 @@
                                   <div class="modal-body">
                                       <!--Register Form-->
                                 <form  class="contact_form" action="controller" id="registerForm" method="post">
-                                    
+
                                     <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
                                     <table class="table table-hover">
                                       <tr>
@@ -234,6 +233,6 @@
                                 </div>
 
                               </div>
-            </div>         
+            </div>
     </body>
 </html>
