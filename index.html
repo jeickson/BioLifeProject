@@ -144,26 +144,21 @@
                         <input id="password" type="password" class="form-control input-lg" name="password" ng-model="user.password" placeholder="Password">
                     </div>
                     <div class="input-group">
-                        <div class="checkbox">
-                            <label>
-                                <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                            </label>
-                        </div>
+                      <div class="checkbox">
+                        <label>
+                          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                        </label>
+                      </div>
                      </div>
                 </div>
                 <div id="loginBtns">
-                        <button class="btn btn-info btn-block btn-lg">LOGIN</button>
-                        <span id="forgot-password">
-                         <a href="#" >
-                            Forgot the password?
-                        </a>
-                        </span>
-                        <span id="registerLink">
-                         <a href="#" data-toggle="modal" data-target="#myModal" >
-                            Join us now!
-                        </a>
-                        </span>
-
+                  <button class="btn btn-info btn-block btn-lg">LOGIN</button>
+                  <span id="forgot-password">
+                  <a href="#" >Forgot the password?</a>
+                  </span>
+                  <span id="registerLink">
+                    <a href="#" data-toggle="modal" data-target="#myModal" >Join us now!</a>
+                  </span>
                 </div>
                 </form>
            </div>
@@ -178,8 +173,8 @@
                 </div>
                 <div id="perfilGroupBtn" >
                      <div class="col-lg-6 well">
-                         <button class="btn btn-block btn-success btn-lg">My Perfil</button>
-                         <button class="btn btn-block btn-primary btn-lg">My Articles</button>
+                        <button class="btn btn-block btn-success btn-lg">My Perfil</button>
+                        <button class="btn btn-block btn-primary btn-lg">My Articles</button>
                         <button class="btn btn-block  btn-basic btn-lg">My Favs</button>
                      </div>
                      <div class="col-lg-6 well">
@@ -191,7 +186,7 @@
             <!-------------------------------------------------------------END--------------------------------------------------------->
             </aside>
            <!-- Register Modal -->
-             <div class="modal fade" id="myModal" role="dialog" ng-controller="UserController as userControl">
+            <div class="modal fade" id="myModal" role="dialog" ng-controller="UserController as userCtrl">
                 <register-modal></register-modal>
             </div>
     </body>
