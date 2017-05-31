@@ -1,8 +1,8 @@
 <?php
 /**
  * Description of MainController
- * @package    Pt4.1
- * @author     Manuel Molina
+ * @package    
+ * @author     
  * @version    1.0
  * @date: 2017-05-10
 */

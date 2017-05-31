@@ -23,7 +23,7 @@ class UserADO implements EntityInterfaceADO {
     private static $colNameAddress = "address";
     private static $colNameRole = "role";
 
-    //---Databese management section-----------------------
+    //---Database management section-----------------------
     /**
 	 * fromResultSetList()
 	 * this function runs a query and returns an array with all the result transformed into an object
