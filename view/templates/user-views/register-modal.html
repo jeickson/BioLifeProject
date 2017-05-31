@@ -15,21 +15,25 @@
         </tr>
         <tr>
           <td><input type="text" class="form form-control" placeholder="Name*" ng-model="user.name" required/></td>
-          <td><input type="text" class="form form-control" placeholder="Surname*"  ng-model="user.name" required/></td>
+          <td><input type="text" class="form form-control" placeholder="Surname*"  ng-model="user.surname" required/></td>
         </tr>
         <tr>
           <td><input type="password" class="form form-control" ng-model="user.password" placeholder="Password" required /></td>
           <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email*" placeholder="name@something.com" /></td>
+          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email*" /></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text" class="form form-control" ng-model="user.birthdate" placeholder="Birthday*" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
+          <td colspan="2"><input type="text" class="form form-control" ng-model="user.birthdate" placeholder="Birthday*" /></td>
         </tr>
         <tr>
-          <td colspan="2"><button class="btn btn-block"  onclick="userCtrl.Register()">Register</button></td>
+          <td colspan="2"><input type="text" class="form form-control" ng-model="user.address" placeholder="Address*" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
+        </tr
+        <tr>
+          <td colspan="2"><button class="btn btn-block"  ng-click="userCtrl.Register()">Register</button></td>
         </tr>
+        >
       </table>
   </form>
     </div>
