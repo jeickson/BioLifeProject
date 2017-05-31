@@ -1,24 +1,7 @@
 /* @name: User
- * @author: Manu Molina
+ * @author: Anas
  * @date: 30/04/2017
  * @description: describes the user data
- * @Attributes:
- *      id: identification of food in stock
- *      name:
- *      surname1: 
- *      nick: 
- *      password: 
- *      address: 
- *      telephone: 
- *      mail: 
- *      birthDate: 
- *      entryDate: 
- *      dropOutDate: 
- *      active: 
- *      image: 
- *      city: 
- *      state: 
- *      userType: 
  * @methods:
  *      construct
  *      set's and get's foor each attribute
@@ -29,93 +12,68 @@ function User()
 {
     //Attributes declaration
     this.id;
-    this.name;
-    this.surname1;
     this.nick;
     this.password;
+    this.name;
+    this.surname;
+    this.email;
+    this.age;
+    this.birthdate;
     this.address;
-    this.telephone;
-    this.mail;
-    this.birthDate;
-    this.entryDate;
-    this.dropOutDate;
-    this.active;
-    this.image;
-    this.city;
-    this.state;
-    this.userType;
+    this.role;
 
     //methods declaration
-    this.construct = function (id, name, surname1, nick, password, address, telephone, mail, birthDate, entryDate, dropOutDate, active, image, city, state, userType)
+    this.construct = function (id, nick, password, name, surname, email, age, birthdate, address, role)
     {
         this.setId(id);
+        this.setNick(nick);
+        this.setPassword(password);
         this.setName(name);
-        this.setSurname1(surname1);
-		this.setNick(nick);
-		this.setPassword(password);
+        this.setSurname(surname);
+        this.setEmail(email);
+        this.setAge(age);
+        this.setBirthdate(birthdate);
         this.setAddress(address);
-        this.setTelephone(telephone);
-        this.setMail(mail);
-        this.setBirthDate(birthDate);
-		this.setEntryDate(entryDate);
-		this.setDropOutDate(dropOutDate);
-		this.setActive(active);
-		this.setImage(image);
-        this.setCity(city);
-        this.setState(state);
-        this.setUserType(userType);        
+        this.setRole(role);
     }
 
     //setters
     this.setId = function (id) {this.id=id;}
-    this.setName = function (name) {this.name=name;}
-    this.setSurname1 = function (surname1) {this.surname1=surname1;}
     this.setNick = function (nick) {this.nick=nick;}
     this.setPassword = function (password) {this.password=password;}
+    this.setName = function (name) {this.name=name;}
+    this.setSurname = function (surname) {this.surname=surname;}
+    this.setEmail = function (email) {this.email=email;}
+    this.setAge = function (age) {this.age=age;}
+    this.setBirthdate = function (birthdate) {this.birthdate=birthdate;}
     this.setAddress = function (address) {this.address=address;}
-    this.setTelephone = function (telephone) {this.telephone=telephone;}
-    this.setMail = function (mail) {this.mail=mail;}
-    this.setBirthDate = function (birthDate) {this.birthDate=birthDate;}
-    this.setEntryDate = function (entryDate) {this.entryDate=entryDate;}
-    this.setDropOutDate = function (dropOutDate) {this.dropOutDate=dropOutDate;}
-    this.setActive = function (active) {this.active=active;}
-    this.setImage = function (image) {this.image=image;}
-    this.setCity = function (city) {this.city=city;}
-    this.setState = function (state) {this.state=state;}
-    this.setUserType = function (userType) {this.userType=userType;}
+    this.setRole = function (role) {this.role=role;}
 
     //getters
     this.getId = function () {return this.id;}
-    this.getName = function () {return this.name;}
-    this.getSurname1 = function () {return this.surname1;}
     this.getNick = function () {return this.nick;}
     this.getPassword = function () {return this.password;}
+    this.getName = function () {return this.name;}
+    this.getSurname = function () {return this.surname;}
+    this.getEmail = function () {return this.email;}
+    this.getAge = function () {return this.age;}
+    this.getBirthdate = function () {return this.birthdate;}
     this.getAddress = function () {return this.address;}
-    this.getTelephone = function () {return this.telephone;}
-    this.getMail = function () {return this.mail;}
-    this.getBirthDate = function () {return this.birthDate;}
-    this.getEntryDate = function () {return this.entryDate;}
-    this.getDropOutDate = function () {return this.dropOutDate;}
-    this.getActive = function () {return this.active;}
-    this.getImage = function () {return this.image;}
-    this.getCity = function () {return this.city;}
-    this.getState = function () {return this.state;}
-    this.getUserType = function () {return this.userType;}
+    this.getRole = function () {return this.role;}
 
     /*
     * @name: toString()
-    * @author: Cristian Garcia && Sofiane
+    * @author: Anas Serhani
     * @version: 3.1
     * @description: convert object to string
     * @date: 04/03/2015
    */
     this.toString = function ()
     {
-	var userString ="id="+this.getId()+" name="+this.getName()+" surname="+this.getSurname1();
-	userString +=" nick="+this.getNick()+" password="+this.getPassword()+" telephone="+this.getTelephone()+" mail="+this.getMail();
-	userString +=" birth date="+this.getBirthDate()+" up date="+this.getEntryDate()+" out date="+this.getDropOutDate()+" active="+this.getActive()+" image="+this.getImage();
-    userString +=" city="+this.getCity()+" state="+this.getState()+" userType="+this.getUserType();
+    	var userString ="id="+this.getId()+" nick="+this.getNick()+" password="+this.getPassword()+" name="+this.getName()
+      +" surname="+this.getSurname()+" email="+this.getEmail()+" age="+this.getAge()+
+      " birthDate="+this.getBirthdate()+" role="+this.getRole();
 
-	return userString;
+    	return userString;
     }
 }
