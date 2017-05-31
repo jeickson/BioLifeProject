@@ -3,7 +3,7 @@
 	angular.module("BioLifeApp").controller("UserController", ['$http','$scope', '$window', '$cookies','accessService', 'userConnected',function ($http, $scope, $window, $cookies, accessService, userConnected){
 
 		//scope variables
-    $scope.userlogged=0;
+                $scope.userlogged=1;
 		$scope.userOption=0;
 		$scope.user = new User();
 		$scope.errorLogIn;

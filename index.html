@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/index1.css">
         <link rel="stylesheet" type="text/css" href="css/articlesView.css">
-
+        <link rel="stylesheet" type="text/css" href="css/articleCreateView.css">
 
         <!--css BOOTSTRAP-->
         <link rel="stylesheet" type="text/css" href="vendors/bootstrap/css/bootstrap.min.css" />
@@ -119,10 +119,15 @@
                     <articles-view ng-show="$parent.actionView==='articles'"></articles-view>
                     <article-details-view ng-show="$parent.actionView==='articleDetails'"></article-details-view>
                 </div>
+                
                  <!-- Cart View-->
-                 <cart-view ng-show="actionView==='cart'"></cart-view>
-                </div>
-            <!--aside-->
+                <cart-view ng-show="actionView==='cart'"></cart-view>
+                
+                 <!-- Article Create View-->
+                <article-create-view ng-show="actionView==='articleCreate'"></article-create-view>
+             </div>
+        
+            <!--------------------------------------------------aside--------------------------------------------------->
 
               <aside id="logIn" class=" col-xs-12 col-md-3 col-sm-3 col-lg-3 well" ng-show="loginView" ng-controller="UserController as userCtrl">
                  <button class="btn btn-warning" id='btnLoginInside' ng-click="asideOpenClose()"><span class="glyphicon glyphicon-circle-arrow-right icon-size"></span></button>
@@ -173,12 +178,12 @@
                 </div>
                 <div id="perfilGroupBtn" >
                      <div class="col-lg-6 well">
-                        <button class="btn btn-block btn-success btn-lg">My Perfil</button>
-                        <button class="btn btn-block btn-primary btn-lg">My Articles</button>
+                         <button class="btn btn-block btn-success btn-lg">My Perfil</button>
+                         <button class="btn btn-block btn-primary btn-lg" >My Articles</button>
                         <button class="btn btn-block  btn-basic btn-lg">My Favs</button>
                      </div>
                      <div class="col-lg-6 well">
-                         <button class="btn btn-block btn-info btn-lg" id="createArtBtn">Create Article</button>
+                         <button class="btn btn-block btn-info btn-lg" id="createArtBtn" ng-click="$parent.actionView='articleCreate';$parent.asideOpenClose()">Create Article</button>
                      </div>
                  </div>
                  <button class="btn btn-danger btn-block btn-lg" ng-click="userCtrl.logOut()">Logout</button>
