@@ -174,16 +174,16 @@
                 <h3>Welcome {{user.name}}</h3>
               </div>
                 <div id="logoPerfilDiv">
-                    <img src="img/perfil.png">
+                    <img src="img/perfil.png" class="img-responsive">
                 </div>
-                <div id="perfilGroupBtn" >
-                     <div class="col-lg-6 well">
-                         <button class="btn btn-block btn-success btn-lg">My Perfil</button>
-                         <button class="btn btn-block btn-primary btn-lg" >My Articles</button>
-                        <button class="btn btn-block  btn-basic btn-lg">My Favs</button>
+                <div id="perfilGroupBtn " >
+                     <div class="col-sm-12 col-lg-6 well">
+                         <button class="btn btn-block btn-success btn-lg">My <br>Perfil</button>
+                         <button class="btn btn-block btn-primary btn-lg" >My <br>Articles</button>
+                        <button class="btn btn-block  btn-basic btn-lg">My <br>Favs</button>
                      </div>
-                     <div class="col-lg-6 well">
-                         <button class="btn btn-block btn-info btn-lg" id="createArtBtn" ng-click="$parent.actionView='articleCreate';$parent.asideOpenClose()">Create Article</button>
+                     <div class="col-sm-12  col-lg-6 well">
+                         <button class="btn btn-block btn-info btn-lg" id="createArtBtn" ng-click="$parent.actionView='articleCreate';$parent.asideOpenClose()" ><span>Create Article</span></button>
                      </div>
                  </div>
                  <button class="btn btn-danger btn-block btn-lg" ng-click="userCtrl.logOut()">Logout</button>

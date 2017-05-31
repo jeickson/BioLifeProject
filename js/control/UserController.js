@@ -3,7 +3,7 @@
 	angular.module("BioLifeApp").controller("UserController", ['$http','$scope', '$window', '$cookies','accessService', 'userConnected',function ($http, $scope, $window, $cookies, accessService, userConnected){
 
 		//scope variables
-                $scope.userlogged=1;
+                $scope.userlogged=0;
 		$scope.userOption=0;
 		$scope.user = new User();
 		$scope.errorLogIn;
@@ -14,21 +14,7 @@
 		$scope.phoneFormat= /^[0-9]{9,9}$/;
 		$scope.onlyNumbers = /[\u0030-\u0039]+/g;
 
-		if (typeof (Storage) == "undefined")
-		{
-			alert("Your browser is not compatible with sessions, upgrade your browser");
-		} else
-		{
-			if (sessionStorage.length > 0)
-			{
-				var objAux = JSON.parse(sessionStorage.getItem("userConnected"));
-
-				if (!isNaN(objAux.id))
-				{
-					$scope.user.construct(objAux.id, objAux.nick, objAux.password, objAux.name, objAux.surname, objAux.email, objAux.age, objAux.birthdate, objAux.address, objAux.role);
-				}
-			}
-		}
+		
 
 		$scope.passwordValid = true;
 		$scope.nickValid = true;
@@ -64,13 +50,9 @@
 			promise.then(function (outPutData) {
 				if(outPutData[0]=== true)
 				{
-					if (typeof(Storage) !== "undefined") {
-						sessionStorage.userConnected = JSON.stringify(outPutData[1][0]);
-						$scope.user = outPutData[1][0];
-						$scope.userlogged=1;
-					} else {
-						alert("Your browser is not compatible with this application, upgrade it plase!");
-					}
+                                    $scope.user = outPutData[1][0];
+                                    $scope.userlogged=1;
+					
 				}
 				else
 				{
@@ -95,13 +77,11 @@
 			promise.then(function (outPutData) {
 				if(outPutData[0]=== true)
 				{
-					if (typeof(Storage) !== "undefined") {
+					
 						sessionStorage.userConnected = JSON.stringify(outPutData[1][0]);
 						$scope.user = outPutData[1][0];
 						$scope.userlogged=1;
-					} else {
-						alert("Your browser is not compatible with this application, upgrade it plase!");
-					}
+					
 				}
 				else
 				{
