@@ -194,9 +194,16 @@ class UserADO implements EntityInterfaceADO {
 			print "Error connecting database: " . $e->getMessage() . " ";
 			die();
 		}
-
-		$cons="insert into ".UserADO::$tableName." (`name`,`surname`,`nick`,`password`,`address`,`telephone`,`mail`,`birthDate`,`entryDate`,`dropOutDate`,`active`,`image`, `city`, `state`, `userType`) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		$arrayValues= [$user->getName(),$user->getsurname(), $user->getNick(), $user->getPassword(), $user->getAddress(), $user->getTelephone(), $user->getMail(), $user->getBirthDate(), $user->getEntryDate(), $user->getDropOutDate(), $user->getActive(), $user->getImage(), $user->getCity(), $user->getState(), $user->getUserType()];
+		$cons="insert into ".UserADO::$tableName." (`nick`, `password`, `name`, `surname`, `email`, `age`, `birthdate`, `address`, `role`) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		$arrayValues= [$user->getNick(),
+    $user->getPassword(),
+    $user->getName(),
+    $user->getSurname(),
+    $user->getEmail(),
+    $user->getAge(),
+    $user->getBirthdate(),
+    $user->getAddress(),
+    $user->getRole()];
 
 		$id = $conn->executionInsert($cons, $arrayValues);
 
