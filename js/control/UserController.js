@@ -8,6 +8,12 @@
 		$scope.user = new User();
 		$scope.errorLogIn;
 
+		//Variables for ng-pattern
+		$scope.areChars = /^[a-zA-Z\s]*$/;
+		$scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
+		$scope.phoneFormat= /^[0-9]{9,9}$/;
+		$scope.onlyNumbers = /[\u0030-\u0039]+/g;
+
 		if (typeof (Storage) == "undefined")
 		{
 			alert("Your browser is not compatible with sessions, upgrade your browser");
@@ -82,6 +88,7 @@
 			//copy
 			$scope.user = angular.copy($scope.user);
 			alert($scope.user);
+
 			//Server conenction to verify user's data
 			var promise = accessService.getData( "php/controllers/MainController.php", true, "POST", {controllerType:0,action:10010,jsonData:JSON.stringify($scope.user)});
 
