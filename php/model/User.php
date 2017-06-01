@@ -1,9 +1,5 @@
 <?php
-/** userClass.php
- * Entity userClass
- * autor  Roberto Plana
- * version 2012/09
- */
+
 require_once "EntityInterface.php";
 
 class UserClass implements EntityInterface {

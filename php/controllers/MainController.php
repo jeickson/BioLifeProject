@@ -8,6 +8,7 @@
 */
 
 require_once "UserController.php";
+require_once "PublicationController.php";
 
 function is_session_started()
 {
@@ -34,20 +35,11 @@ if ( isset($_REQUEST['controllerType']) ) {
 			$outPutData = $userController->doAction();
 			break;
 		case 1:
-				if (isset($_SESSION['connectedUser'])) {
-					$applicationController = new ApplicationControllerClass( $_REQUEST['action'], $_REQUEST['jsonData'] );
-					$outPutData = $applicationController->doAction();
-				}
-				break;
-		case 2:
-				if (isset($_SESSION['connectedUser'])) {
-					$reviewController = new ReviewControllerClass( $_REQUEST['action'], $_REQUEST['jsonData'] );
-					$outPutData = $reviewController->doAction();
-				}
-		case 3:
-				/*$fileController = new FileControllerClass( $_REQUEST['action'], $_REQUEST['jsonData'] );
-				$outPutData = $fileController->doAction();*/
-				break;
+			$publicationController = new PublicationControllerClass( $_REQUEST['action'], $_REQUEST['jsonData'] );
+			$outPutData = $publicationController->doAction();
+			break;	
+		
+		
 		default:
 			$errors = array();
 			$outPutData[0]=false;
