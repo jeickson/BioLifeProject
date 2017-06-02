@@ -67,7 +67,25 @@ class PublicationControllerClass implements ControllerInterface {
 	}
 
 	private function getAllArticles() {
-		
+		$outPutData = array();
+                
+                $artArray = ArticleADO::findAll();
+
+		if(count($artArray) == 0) {
+			$outPutData[]= false;
+			$errors = array();
+			$errors[]="No articles found in the database";
+			$outPutData[] = $errors;
+		} else {
+			$outPutData[]= true;
+			$arToLocal = array();
+			foreach ($artArray as $art) {
+				$arToLocal[] = $art->getAll();
+			}
+			$outPutData[] = $arToLocal;
+		}
+
+		return $outPutData;
 	}
 }
 ?>

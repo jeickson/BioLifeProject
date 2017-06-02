@@ -25,10 +25,10 @@ class ArticleClass implements EntityInterface {
     private static $colNameAbstract = "abstract";
     private static $colNameStatus = "status";
     private static $colNameDate = "date";
-    
+    private static $colNameNickUser = "nickUser";
 
     function __construct() {
-        $this->user= new UserClass();
+
         $this->code=new CodeClass();
     }
 
@@ -147,8 +147,8 @@ class ArticleClass implements EntityInterface {
         $data["abstract"] = $this->abstract;
         $data["status"] = $this->status;
         $data["date"] = $this->date;
-        $data["user"]= $this->user->getAll();
-
+        $data["nickUser"]= $this->user;
+        $data["code"]=$this->code->getAll();
 	return $data;
     }
 
@@ -156,7 +156,7 @@ class ArticleClass implements EntityInterface {
         $this->setId($id);
         $this->setTitle($title);
         $this->setAbstract($abstract);
-        $this->setStatus();
+        $this->setStatus($status);
         $this->setDate($date);
         $this->setUser($user);
         $this->setCode($code);

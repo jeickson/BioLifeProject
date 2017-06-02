@@ -24,10 +24,10 @@ class CodeClass implements EntityInterface {
     private static $colNameDesc = "description";
     private static $colNameType = "type";
     private static $colNameWeight = "weight";
-    
+    private static $colNameLength = "length";
 
     function __construct() {
-        $this-> specie=new SpecieClass();
+       
     }
 
     function getId() {
@@ -144,15 +144,19 @@ class CodeClass implements EntityInterface {
         $data["description"] = $this->description;
         $data["length"] = $this->length;
         $data["weight"] = $this->weight;
-        $data["specie"]= $this->specie->getAll();
-        
+        $data["specie"]= $this->specie;
+         $data["type"]= $this->type;
 	return $data;
     }
 
-    public function setAll($id) {
+    public function setAll($id,$specie,$name,$description,$type,$length,$weight) {
       $this->setId($id);
-       
-      
+       $this->setSpecie($specie);
+       $this->setName($name);
+       $this->setDescription($description) ;
+       $this->setType($type);
+       $this->setLength($length);
+       $this->setWeight($weight);
     }
 
     public function toString() {
