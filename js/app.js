@@ -61,7 +61,7 @@ function toggleID(id){
 
 // Angular code
 (function(){
-  var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination']);
+  var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination',"ngRoute"]);
 
     
     //TEMPLATES

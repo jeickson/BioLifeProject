@@ -20,6 +20,10 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
         this.loadArticles=function(){
             var promise = accessService.getData("php/controllers/MainController.php", true, "POST", {controllerType:1,action:10000,jsonData:JSON.stringify("")});
 
+            this.articleDetailsView=function(article){
+               $scope.articleSelected=article;
+               $scope.$parent.actionView="articleDetails";
+            }
             promise.then(function (outPutData) {
                     if(outPutData[0]=== true)
                     {
@@ -34,7 +38,9 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
                            outPutData[1][i].status,outPutData[1][i].nickUser,outPutData[1][i].date,code);
 
                             $scope.articleArray.push(article);
+                            
                          }
+                         
                          $scope.filteredData = $scope.articleArray;
                     }
                     else

@@ -49,7 +49,7 @@ function Code()
     this.getName = function () {return this.name;}
     this.getType = function () {return this.type;}
     this.getLength = function () {return this.length;}
-    this.getWeight = function () {return this.date;}
+    this.getWeight = function () {return this.weight;}
 
 
   

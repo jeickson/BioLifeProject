@@ -3,11 +3,11 @@
        <div class="row ">
            <div class="col-lg-8 col-lg-offset-2 well">
                 <div class="page-header">
-                    <p class="h1">Title Article</p>
+                    <p class="h1">{{articleSelected.getTitle()}}</p>
                 </div>
                 <div class="col-md-8">
-                    <p class="h4">Author: Ejemplo</p>
-                    <p class="h4">Date:25/05/2017</p>
+                    <p class="h4">Author: {{articleSelected.getUser()}}</p>
+                    <p class="h4">Date:{{articleSelected.getDate()}}</p>
                     <p class="h4">Related Species:</p>
                     <div class="row">
                         <div class="col-md-3">
@@ -26,28 +26,7 @@
                    <p class="h4">Abstract:</p>
                    <div class="row well blankContainer" >
                        <p>
-                           Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-                           Aenean commodo ligula eget dolor. 
-                           Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, 
-                           nascetur ridiculus mus. Donec quam felis, ultricies nec, 
-                           pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-                           Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-                           In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. 
-                           Nullam dictum felis eu pede mollis pretium. Integer tincidunt.
-                           Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. 
-                           Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, 
-                           dapibus in, viverra quis, feugiat a, tellus. 
-                           Phasellus viverra nulla ut metus varius laoreet. 
-                           Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. 
-                           Curabitur ullamcorper ultricies nisi. Nam eget dui. 
-                           Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, 
-                           sem quam semper libero, sit amet adipiscing sem neque sed ipsum. 
-                           Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, 
-                           lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus.
-                           Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. 
-                           Duis leo. Sed fringilla mauris sit amet nibh.
-                           Donec sodales sagittis magna.
-                           Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+                          {{articleSelected.getAbstract()}}
                        </p>
                    </div>
                </div>
@@ -67,11 +46,11 @@
                          </thead>
                          <tbody>
                              <tr>
-                                 <td>secuencia1</td>
-                                 <td>example</td>
+                                 <td>{{articleSelected.code.getName()}}</td>
+                                 <td>{{articleSelected.code.getSpecie()}}</td>
  
-                                 <td>250</td>
-                                 <td>200</td>
+                                 <td>{{articleSelected.code.getLength()}}</td>
+                                 <td>{{articleSelected.code.getWeight()}}</td>
                                  <td class="text-center">
                                      <button class="btn btn-success " ><span class="glyphicon glyphicon-shopping-cart"></span></button>
                                  </td>
