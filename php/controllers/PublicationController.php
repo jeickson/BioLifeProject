@@ -69,7 +69,9 @@ class PublicationControllerClass implements ControllerInterface {
 	private function getAllArticles() {
 		$outPutData = array();
                 
-                $artArray = ArticleADO::findAll();
+                $artAnimals=ArticleADO::findByAnimals();
+                $artPlants=ArticleADO::findByPlants();
+                $artArray = array_merge($artAnimals,$artPlants);
 
 		if(count($artArray) == 0) {
 			$outPutData[]= false;

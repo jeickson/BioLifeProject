@@ -9,7 +9,7 @@ class SpecieClass implements EntityInterface {
     private $id;
     private $name;
     private $description;
-    private $idLivingBeing;
+    private $LivingBeing;
 
 
 
@@ -39,8 +39,8 @@ class SpecieClass implements EntityInterface {
         return $this->description;
     }
 
-    function getIdLivingBeing() {
-        return $this->idLivingBeing;
+    function getLivingBeing() {
+        return $this->LivingBeing;
     }
 
     static function getTableNameCode() {
@@ -75,8 +75,8 @@ class SpecieClass implements EntityInterface {
         $this->description = $description;
     }
 
-    function setIdLivingBeing($idLivingBeing) {
-        $this->idLivingBeing = $idLivingBeing;
+    function setLivingBeing($LivingBeing) {
+        $this->LivingBeing = $LivingBeing;
     }
 
     static function setTableNameCode($tableNameCode) {
@@ -107,16 +107,16 @@ class SpecieClass implements EntityInterface {
         $data["id"] = $this->id;
         $data["name"] = $this->name;
         $data["description"] = $this->description;
-        $data["idLivingBeing"] = $this->idLivingBeing;
+        $data["idLivingBeing"] = $this->LivingBeing->getAll();
 
 	return $data;
     }
 
-    public function setAll($id) {
+    public function setAll($id,$name,$description,$livingBeing) {
       $this->setId($id);
       $this->setName($name);
       $this->setDescription($description);
-      $this->setIdLivingBeing($idLivingBeing);
+      $this->setLivingBeing($livingBeing);
     }
 
     public function toString() {

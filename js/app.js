@@ -61,9 +61,32 @@ function toggleID(id){
 
 // Angular code
 (function(){
-  var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination',"ngRoute"]);
+  var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination']);
 
-    
+    //Routes
+/* BioLifeApp.config(function($routeProvider) {
+
+    $routeProvider
+        .when('/', {
+            templateUrl : 'view/templates/main-view.html',
+           
+        })
+        .when('/list/articles', {
+            templateUrl : 'view/templates/article-views/articles-view.html',
+            controller  : 'ArticleController',
+            controllerAs:'ArtCtrl'
+           
+        })
+        .when('/list/articles/:idArticle', {
+            templateUrl : 'view/templates/article-views/articleDetails-view.html',
+            controller  : 'ArticleController',
+            controllerAs:'ArtCtrl'
+           
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});*/
     //TEMPLATES
 
     BioLifeApp.directive("cartView", function (){

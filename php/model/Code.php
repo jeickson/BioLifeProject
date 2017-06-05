@@ -5,7 +5,7 @@ require_once "Specie.php";
 
 class CodeClass implements EntityInterface {
 
-
+    //variables
     private $id;
     private $specie;
     private $name;
@@ -25,9 +25,10 @@ class CodeClass implements EntityInterface {
     private static $colNameType = "type";
     private static $colNameWeight = "weight";
     private static $colNameLength = "length";
-
+    
+    //Construct
     function __construct() {
-       
+        $this->specie= new SpecieClass();
     }
 
     function getId() {
@@ -144,7 +145,7 @@ class CodeClass implements EntityInterface {
         $data["description"] = $this->description;
         $data["length"] = $this->length;
         $data["weight"] = $this->weight;
-        $data["specie"]= $this->specie;
+        $data["specie"]= $this->specie->getAll();
          $data["type"]= $this->type;
 	return $data;
     }

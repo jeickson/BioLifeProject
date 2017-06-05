@@ -34,18 +34,18 @@
         <script src="js/model/User.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/model/Article.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/model/Code.js" type="text/javascript" xml:space="preserve"></script>
-        
+
 
         <!--Own code-->
         <script src="js/app.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/control/BioLifeController.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/control/UserController.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/control/ArticleController.js" type="text/javascript" xml:space="preserve"></script>
-
+       
 
     </head>
     <body ng-controller="BioLifeController as BioLifeCtrl">
-        <div  class="container-fluid" id="divFullContent">
+        <div  class="container-fluid" id="divFullContent" >
                 <header id="mainHeader" class="col-lg-12 well asideClosed">
                    <div class="row">
                         <div class="col-xs-12  col-lg-4 "></div>
@@ -111,24 +111,24 @@
 
                 </header>
                 
-                <!--Main View --
+                <!--Main View -->
                 <main-view ng-show="actionView==='main'"></main-view>
 
-                <!-- View Contact--
+                <!-- View Contact-->
                 <contact-view ng-show="actionView==='contact'"></contact-view>
 
-                <!-- Articles View--
+                <!-- Articles View-->
                 <div ng-controller="ArticleController as ArtCtrl" ng-init="ArtCtrl.loadArticles()">
                     <articles-view ng-show="$parent.actionView==='articles'"></articles-view>
                     <article-details-view ng-show="$parent.actionView==='articleDetails'"></article-details-view>
                 </div>
                 
-                 <!-- Cart View--
+                 <!-- Cart View-->
                 <cart-view ng-show="actionView==='cart'"></cart-view>
                 
-                 <!-- Article Create View--
+                 <!-- Article Create View-->
                 <article-create-view ng-show="actionView==='articleCreate'"></article-create-view>
-             </div>-->
+             </div>
         
             <!--------------------------------------------------aside--------------------------------------------------->
 
