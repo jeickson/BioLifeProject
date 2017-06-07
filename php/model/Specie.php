@@ -10,7 +10,7 @@ class SpecieClass implements EntityInterface {
     private $name;
     private $description;
     private $LivingBeing;
-
+    private $img;
 
 
 
@@ -21,6 +21,7 @@ class SpecieClass implements EntityInterface {
     private static $colNameName = "name";
     private static $colNameDesc = "description";
     private static $colNameIdLivingBeing = "idLivingBeing";
+    private static $colNameImg = "img";
 
     
 
@@ -42,8 +43,15 @@ class SpecieClass implements EntityInterface {
     function getLivingBeing() {
         return $this->LivingBeing;
     }
+    function getImg() {
+        return $this->img;
+    }
 
-    static function getTableNameCode() {
+    static function getColNameImg() {
+        return self::$colNameImg;
+    }
+
+        static function getTableNameCode() {
         return self::$tableNameCode;
     }
 
@@ -78,8 +86,15 @@ class SpecieClass implements EntityInterface {
     function setLivingBeing($LivingBeing) {
         $this->LivingBeing = $LivingBeing;
     }
+    function setImg($img) {
+        $this->img = $img;
+    }
 
-    static function setTableNameCode($tableNameCode) {
+    static function setColNameImg($colNameImg) {
+        self::$colNameImg = $colNameImg;
+    }
+
+        static function setTableNameCode($tableNameCode) {
         self::$tableNameCode = $tableNameCode;
     }
 
@@ -107,16 +122,17 @@ class SpecieClass implements EntityInterface {
         $data["id"] = $this->id;
         $data["name"] = $this->name;
         $data["description"] = $this->description;
-        $data["idLivingBeing"] = $this->LivingBeing->getAll();
-
+        $data["livingBeing"] = $this->LivingBeing->getAll();
+        $data["img"]= $this->getImg();
 	return $data;
     }
 
-    public function setAll($id,$name,$description,$livingBeing) {
+    public function setAll($id,$name,$description,$livingBeing,$img) {
       $this->setId($id);
       $this->setName($name);
       $this->setDescription($description);
       $this->setLivingBeing($livingBeing);
+      $this->setImg($img);
     }
 
     public function toString() {

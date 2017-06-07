@@ -1,7 +1,7 @@
 /* @name: User
  * @author: Frias Marte Jeickson
  * @date: 02/06/2017
- * @description: describes the Article data
+ * @description: describes the Code data
  * @methods:
  *      construct
  *      set's and get's foor each attribute
@@ -21,7 +21,7 @@ function Code()
     
 
     //methods declaration
-    this.construct = function (id, specie, name, type, length, weight)
+    this.construct = function (id, specie, name, type, length, weight,description)
     {
         this.setId(id);
         this.setSpecie(specie);
@@ -29,7 +29,7 @@ function Code()
         this.setType(type);
         this.setLength(length);
         this.setWeight(weight);
-
+        this.setDesc(description);
         
     }
     
@@ -40,7 +40,7 @@ function Code()
     this.setType = function (type) {this.type=type;}
     this.setLength = function (length) {this.length=length;}
     this.setWeight = function (weight) {this.weight=weight;}
-   
+    this.setDesc = function (description) {this.description=description;}
     
 
     //getters
@@ -50,7 +50,7 @@ function Code()
     this.getType = function () {return this.type;}
     this.getLength = function () {return this.length;}
     this.getWeight = function () {return this.weight;}
-
+    this.getDesc = function () {return this.description;}
 
   
     this.toString = function ()

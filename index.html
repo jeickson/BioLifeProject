@@ -34,7 +34,9 @@
         <script src="js/model/User.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/model/Article.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/model/Code.js" type="text/javascript" xml:space="preserve"></script>
-
+        <script src="js/model/Specie.js" type="text/javascript" xml:space="preserve"></script>
+        <script src="js/model/Animal.js" type="text/javascript" xml:space="preserve"></script>
+        <script src="js/model/Plant.js" type="text/javascript" xml:space="preserve"></script>
 
         <!--Own code-->
         <script src="js/app.js" type="text/javascript" xml:space="preserve"></script>
@@ -46,6 +48,7 @@
     </head>
     <body ng-controller="BioLifeController as BioLifeCtrl">
         <div  class="container-fluid" id="divFullContent" >
+            <div ng-controller="ArticleController as ArtCtrl" ng-init="ArtCtrl.loadArticles()">
                 <header id="mainHeader" class="col-lg-12 well asideClosed">
                    <div class="row">
                         <div class="col-xs-12  col-lg-4 "></div>
@@ -58,76 +61,80 @@
                             <div id="loginBtnDiv">
                                 <button class="btn btn-info" id="loginBtn" ng-click="asideOpenClose()"><span class="glyphicon glyphicon-user icon-size"></span></button>
                             </div>
-                            <div id="cartBtnDiv" class="dropdown" >
-                              <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span></button>
-                                     <ul class="dropdown-menu dropdown-cart" role="menu">
-                                         <table class="table table-striped">
-                                             <thead>
-                                                <tr>
-                                                    <th>Name</th>
-                                                    <th>Specie</th>
-                                                </tr>
-                                             </thead>
-                                             <tbody>
-                                                 <tr>
-                                                     <td>secuencia1</td>
-                                                     <td>dog</td>
-                                                 </tr>
-                                             </tbody>
-                                         </table>
-                                          <div class="divider"></div>
-                                          <p class="text-center" ng-click="actionView='cart'"><a  href="">View Cart</a></p>
-                                     </ul>
-                                </div>
-                                 <div id="searchDiv" >
-                                    <form  id="formSearch">
-                                        <div class="searchbox">
-                                            <input type="search" placeholder="Search" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
-                                        </div>
-                                        <input type="submit" class="searchbox-submit" value="Send">
-                                        <span class="searchbox-icon"><span class="glyphicon glyphicon-search icon-size"></span>
-                                    </form>
-                                </div>
+                            
+                                <div id="cartBtnDiv" class="dropdown" >
+                                  <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                         <ul class="dropdown-menu dropdown-cart" role="menu">
+                                             <table class="table table-striped">
+                                                 <thead>
+                                                    <tr>
+                                                        <th>Name</th>
+                                                        <th>Specie</th>
+                                                    </tr>
+                                                 </thead>
+                                                 <tbody>
+                                                     <tr>
+                                                         <td>secuencia1</td>
+                                                         <td>dog</td>
+                                                     </tr>
+                                                 </tbody>
+                                             </table>
+                                              <div class="divider"></div>
+                                              <p class="text-center" ng-click="$parent.actionView='cart'"><a  href="">View Cart</a></p>
+                                         </ul>
+                                    </div>
+                                     <div id="searchDiv" >
+                                        <form  id="formSearch">
+                                            <div class="searchbox">
+                                                <input type="search" placeholder="Search" name="search" class="searchbox-input" onkeyup="buttonUp();" required>
+                                            </div>
+                                            <input type="submit" class="searchbox-submit" value="Send">
+                                            <span class="searchbox-icon"><span class="glyphicon glyphicon-search icon-size"></span>
+                                        </form>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
 
-                     <div class="row">
-                        <nav id="mainNavBarDiv" class="col-lg-12">
-                             <ul class="container">
-                                <li id="homeLi"><a ng-click="actionView='main'" href=""  id="homeIcon"><span class="glyphicon glyphicon-home icon-size"></a></li>
-                                <li class="dropdown">
-                                  <a class="dropbtn" href="" ng-click="actionView='articles'">Articles <span class="glyphicon glyphicon-triangle-bottom"></a>
-                                  <div class="dropdown-content">
-                                    <a href="#">Animals</a>
-                                    <a href="#">Plants</a>
-                                  </div>
-                                </li>
-                                <li><a href="" ng-click="actionView='codes'">Genetic Codes</a></li>
-                               <li><a href="" ng-click="actionView='contact'">Contact</a></li>
+                         <div class="row">
+                            <nav id="mainNavBarDiv" class="col-lg-12">
+                                 <ul class="container">
+                                    <li id="homeLi"><a ng-click="$parent.actionView='main'" href=""  id="homeIcon"><span class="glyphicon glyphicon-home icon-size"></a></li>
+                                    <li class="dropdown">
+                                      <a class="dropbtn" href="" ng-click="$parent.actionView='articles'">Articles <span class="glyphicon glyphicon-triangle-bottom"></a>
+                                      <div class="dropdown-content">
+                                        <a href="#">Animals</a>
+                                        <a href="#">Plants</a>
+                                      </div>
+                                    </li>
+                                    <li><a href="" ng-click="$parent.actionView='codes'">Genetic Codes</a></li>
+                                   <li><a href="" ng-click="$parent.actionView='contact'">Contact</a></li>
 
-                            </ul>
-                        </nav>
-                    </div>
+                                </ul>
+                            </nav>
+                        </div>
 
-                </header>
-                
-                <!--Main View -->
-                <main-view ng-show="actionView==='main'"></main-view>
+                    </header>
 
-                <!-- View Contact-->
-                <contact-view ng-show="actionView==='contact'"></contact-view>
 
-                <!-- Articles View-->
-                <div ng-controller="ArticleController as ArtCtrl" ng-init="ArtCtrl.loadArticles()">
-                    <articles-view ng-show="$parent.actionView==='articles'"></articles-view>
-                    <article-details-view ng-show="$parent.actionView==='articleDetails'"></article-details-view>
-                </div>
+                     <!--specie-->
+                    <specie-details-view ng-show="$parent.actionView==='specieDetails'"></specie-details-view>
+
+                    <!-- Articles View-->
+
+                        <!--Main View -->
+                        <main-view ng-show="$parent.actionView==='main'"></main-view>
+                        <articles-view ng-show="$parent.actionView==='articles'"></articles-view>
+                        <article-details-view ng-show="$parent.actionView==='articleDetails'"></article-details-view>
+                         <!-- Article Create View-->
+                        <article-create-view ng-show="$parent.actionView==='articleCreate'"></article-create-view>
+                    
+               </div>
                 
                  <!-- Cart View-->
                 <cart-view ng-show="actionView==='cart'"></cart-view>
+                <!-- View Contact-->
+                <contact-view ng-show="actionView==='contact'"></contact-view>
                 
-                 <!-- Article Create View-->
-                <article-create-view ng-show="actionView==='articleCreate'"></article-create-view>
              </div>
         
             <!--------------------------------------------------aside--------------------------------------------------->

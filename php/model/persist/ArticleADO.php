@@ -28,7 +28,7 @@ class ArticleADO implements EntityInterfaceADO {
     private static $tableNameCode = "GeneticCode";
     private static $tableNameIdCode = "idCode";    
     private static $colNameName = "name";
-    private static $colNameDescCode = "description";
+    private static $colNameDescCode = "descCode";
     private static $colNameTypeCode = "type";
     private static $colNameWeightCode = "weight";
     private static $colNameLength = "length";
@@ -38,7 +38,7 @@ class ArticleADO implements EntityInterfaceADO {
     private static $colNameIdSpecie = "idSpecie";
     private static $colNameNameSpecie = "nameSpecie";
     private static $colNameDesSpecie = "description";
-    
+    private static $colNameImgSpecie = "img";
     //----------Data base Values LivingBeings-------------------------------------
     private static $tableNameLiving = "LivingBeings";
     private static $colNameIdLiving = "idLivingBeing";
@@ -79,8 +79,8 @@ class ArticleADO implements EntityInterfaceADO {
     }
 
     public static function findByPlants() {
-        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description,g.type,g.sequence,g.length,g.weight,"
-                . "a.*,s.name as nameSpecie,s.description,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
+        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type,g.sequence,g.length,g.weight,"
+                . "a.*,s.name as nameSpecie,s.description,s.img,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
                 . "p.divition,p.subFamily,p.tribe,p.gender from Contains c,Articles a, GeneticCode g,Specie s,LivingBeings l,Plants p where c.idArticle= a.id AND c.idGeneticCode = g.id "
                 . "AND g.idSpecie = s.id AND s.idLivingBeing = l.id AND  l.id=p.idLivingBeing" ;
 		$arrayValues = [];
@@ -88,8 +88,8 @@ class ArticleADO implements EntityInterfaceADO {
          return ArticleADO::findByQuery( $cons, $arrayValues );
     }
      public static function findByAnimals() {
-        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description,g.type,g.sequence,g.length,g.weight,"
-                . "a.*,s.name as nameSpecie,s.description,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
+        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type,g.sequence,g.length,g.weight,"
+                . "a.*,s.name as nameSpecie,s.description,s.img,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
                 . "t.superKingdom,t.subKingdom,t.superEdge,t.edge,t.subEdge,t.subClasse,t.subOrder,t.branch from Contains c,Articles a, GeneticCode g,Specie s,LivingBeings l,Animals t where c.idArticle= a.id AND c.idGeneticCode = g.id "
                 . "AND g.idSpecie = s.id AND s.idLivingBeing = l.id AND l.id=t.idLivingBeings " ;
 		$arrayValues = [];
@@ -131,6 +131,7 @@ class ArticleADO implements EntityInterfaceADO {
         $idSpecie = $res[ ArticleADO::$colNameIdSpecie];
         $nameSpecie = $res[ArticleADO::$colNameNameSpecie];
         $descSpecie = $res[ArticleADO::$colNameDesSpecie];
+        $img=$res[ArticleADO::$colNameImgSpecie];
         //LivingBeing
         $idLiving = $res[ ArticleADO::$colNameIdLiving];
         $nameLiving = $res[ArticleADO::$colNameNameLiving];
@@ -172,12 +173,13 @@ class ArticleADO implements EntityInterfaceADO {
          $specie= new SpecieClass();
          if (!strcmp($TypeLiving,"animal")){
              
-             $specie->setAll($idSpecie, $nameSpecie, $descSpecie, $animal);
+             $specie->setAll($idSpecie, $nameSpecie, $descSpecie, $animal,$img);
          }else{
-             $specie->setAll($idSpecie, $nameSpecie, $descSpecie, $plant);
+             $specie->setAll($idSpecie, $nameSpecie, $descSpecie, $plant,$img);
          }
         $codeObj= new CodeClass();
         $codeObj->setAll($idCode,$specie,$nameCode,$descCode,$typeCode,$legthCode,$weightCode);
+        
         $articleObj= new ArticleClass();
         $articleObj->setAll($id, $title, $abstract, $status, $date, $nickUser, $codeObj);
         return $articleObj;

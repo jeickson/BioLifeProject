@@ -1,0 +1,48 @@
+<main class="col-lg-12"> 
+    
+       <div class="row ">
+           <div class="col-lg-8 col-lg-offset-2 well">
+               <div class="page-header">
+                    <p class="h1">{{specieSelected.getName()}}</p>
+                </div>
+               <div class="col-lg-12">
+                                 
+                <div class="col-md-6">
+                       <a href="#" class="thumbnail"><img src="http://placehold.it/260x180" ng-show="specieSelected.getImg()==undefined || specieSelected.livingBeing.getDescription()==''" ><img src="img/species/{{specieSelected.img}}" alt=""></a>
+                </div>
+
+                    <div class="col-md-6">
+                  
+                   
+                   <div class="well blankContainer" >
+                       <p ng-show="specieSelected.getDescription()==undefined || specieSelected.livingBeing.getDescription()==''">There is not description about this specie yet :D</p>
+                       <p>
+                          {{specieSelected.getDescription()}}
+                       </p>
+                   </div>
+                </div>
+                   </div>
+                <div class="page-header">
+                    <p class="h3">Animal Information</p>
+                </div>
+                <p class="h4" ng-show="specieSelected.livingBeing.name!=undefined && specieSelected.livingBeing.name!=''"><strong>Name:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.name}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.classe!=undefined && specieSelected.livingBeing.classe!=''"><strong>Classe:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.classe}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.family!=undefined && specieSelected.livingBeing.family!=''"><strong>Family:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.family}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.order!=undefined && specieSelected.livingBeing.order!=''"><strong>Order:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.order}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.kingdom!=undefined && specieSelected.livingBeing.kingdom!=''"><strong>Kingdom:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.kingdom}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.superKingdom!=undefined && specieSelected.livingBeing.superKingdom!=''"><strong>Super Kingdom:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.superKingdom}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.subKingdom!=undefined && specieSelected.livingBeing.subKingdom!=''"><strong>Sub Kingdom:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.subKingdom}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.superEdge!=undefined && specieSelected.livingBeing.superEdge!=''"><strong>Super Edge:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.superEdge}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.edge!=undefined && specieSelected.livingBeing.edge!=''"><strong>Edge:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.edge}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.subEdge!=undefined && specieSelected.livingBeing.subEdge!=''"><strong>Sub Edge:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.subEdge}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.subClasse!=undefined && specieSelected.livingBeing.subClasse!=''"><strong>Sub Classe:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.subClasse}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.subOrder!=undefined && specieSelected.livingBeing.subOrder!=''"><strong>Sub Order:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.subOrder}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.branch!=undefined && specieSelected.livingBeing.branch!=''"><strong>Branch:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.branch}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.divition!=undefined && specieSelected.livingBeing.divition!=''"><strong>Divition:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.divition}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.subFamily!=undefined && specieSelected.livingBeing.subFamily!=''"><strong>Sub Family:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.subFamily}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.tribe!=undefined && specieSelected.livingBeing.tribe!=''"><strong>Tribe:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.tribe}}</p>
+                <p class="h4" ng-show="specieSelected.livingBeing.gender!=undefined && specieSelected.livingBeing.gender!=''"><strong>Gender:</strong>&nbsp;&nbsp;&nbsp;{{specieSelected.livingBeing.gender}}</p>
+           </div>
+      </div>
+    
+</main>
