@@ -40,7 +40,7 @@
     <div class="row">
           
     
-        <div class="col-md-4" dir-paginate="articule in filteredData | itemsPerPage: pageSize" current-page="currentPage"  >
+        <div class="col-md-4" dir-paginate="articule in filteredDataArticle | itemsPerPage: pageSize" pagination-id="articlePagination" current-page="currentPage"  >
                   
                     <div class="panel panel-default">
                        <div class="panel-heading"><strong><a class="post-title" href="" ng-click="ArtCtrl.articleDetailsView(articule)">{{articule.title}}</a></strong></div>
@@ -65,9 +65,9 @@
         </div>
        
    </div>
-       <div class="text-left" boundary-links="true">
+       <div class="text-left" boundary-links="true" >
 			
-			<dir-pagination-controls boundary-links="true" template-url="view/templates/dir-pagination-controls.html"></dir-pagination-controls>
+			<dir-pagination-controls boundary-links="true" template-url="view/templates/dir-pagination-controls.html" pagination-id="articlePagination"></dir-pagination-controls>
 
 
 	</div>

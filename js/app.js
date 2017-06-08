@@ -1,5 +1,6 @@
 // jQuery code
 $(document).ready(function () {
+     
     /*-----------------Search-------------------*/
  var submitIcon = $('.searchbox-icon');
             var inputBox = $('.searchbox-input');
@@ -29,6 +30,9 @@ $(document).ready(function () {
                     }
                 });
       /*--------------------END------------------------*/
+      
+
+   
 });
 /*
     * @name: buttonUp()

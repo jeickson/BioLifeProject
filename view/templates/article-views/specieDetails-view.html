@@ -8,14 +8,14 @@
                <div class="col-lg-12">
                                  
                 <div class="col-md-6">
-                       <a href="#" class="thumbnail"><img src="http://placehold.it/260x180" ng-show="specieSelected.getImg()==undefined || specieSelected.livingBeing.getDescription()==''" ><img src="img/species/{{specieSelected.img}}" alt=""></a>
+                       <a href="#" class="thumbnail"><img src="http://placehold.it/260x180" ng-show="specieSelected.getImg()==undefined || specieSelected.getImg()==''" ><img src="img/species/{{specieSelected.img}}" alt="" ng-show="specieSelected.getImg()!=undefined && specieSelected.getImg()!=''"></a>
                 </div>
 
                     <div class="col-md-6">
                   
                    
                    <div class="well blankContainer" >
-                       <p ng-show="specieSelected.getDescription()==undefined || specieSelected.livingBeing.getDescription()==''">There is not description about this specie yet :D</p>
+                       <p ng-show="specieSelected.getDescription()==undefined || specieSelected.getDescription()==''">There is not description about this specie yet :D</p>
                        <p>
                           {{specieSelected.getDescription()}}
                        </p>

@@ -1,7 +1,7 @@
 //JQuery code
 
  $(document).ready(function(){
-     
+    
 });
 
 
@@ -13,10 +13,13 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
       $scope.articleArray=new Array();
       $scope.articleSelected=new Article();
       $scope.specieSelected;
+      $scope.codeArray=new Array();
         //pagination
-        $scope.filteredData
+        $scope.filteredDataArticle;
 	$scope.pageSize = 6;
 	$scope.currentPage = 1;
+        $scope.pageSize2 = 10;
+	
         
         this.articleDetailsView=function(article){
                $scope.articleSelected=article;
@@ -26,8 +29,51 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
         this.specieDetailsView=function(specie){
                 $scope.specieSelected=specie;
                $scope.$parent.actionView="specieDetails";
+               alert(specie.getImg());
 
-            }    
+            }
+        this.filter=function(){
+                    $('.filterable .btn-filter').click(function(){
+                var $panel = $(this).parents('.filterable'),
+                $filters = $panel.find('.filters input'),
+                $tbody = $panel.find('.table tbody');
+                if ($filters.prop('disabled') == true) {
+                    $filters.prop('disabled', false);
+                    $filters.first().focus();
+                } else {
+                    $filters.val('').prop('disabled', true);
+                    $tbody.find('.no-result').remove();
+                    $tbody.find('tr').show();
+                }
+            });
+
+            $('.filterable .filters input').keyup(function(e){
+                /* Ignore tab key */
+                var code = e.keyCode || e.which;
+                if (code == '9') return;
+                /* Useful DOM data and selectors */
+                var $input = $(this),
+                inputContent = $input.val().toLowerCase(),
+                $panel = $input.parents('.filterable'),
+                column = $panel.find('.filters th').index($input.parents('th')),
+                $table = $panel.find('.table'),
+                $rows = $table.find('tbody tr');
+                /* Dirtiest filter function ever ;) */
+                var $filteredRows = $rows.filter(function(){
+                    var value = $(this).find('td').eq(column).text().toLowerCase();
+                    return value.indexOf(inputContent) === -1;
+                });
+                /* Clean previous no-result if exist */
+                $table.find('tbody .no-result').remove();
+                /* Show all rows, hide filtered ones (never do that outside of a demo ! xD) */
+                $rows.show();
+                $filteredRows.hide();
+                /* Prepend no-result row if all rows are filtered */
+                if ($filteredRows.length === $rows.length) {
+                    $table.find('tbody').prepend($('<tr class="no-result text-center"><td colspan="'+ $table.find('.filters th').length +'">No result found</td></tr>'));
+                }
+            });
+        }
             
         this.loadArticles=function(){
             var promise = accessService.getData("php/controllers/MainController.php", true, "POST", {controllerType:1,action:10000,jsonData:JSON.stringify("")});
@@ -81,7 +127,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
                             
                          }
                          
-                         $scope.filteredData = $scope.articleArray;
+                         $scope.filteredDataArticle = $scope.articleArray;
                     }
                     else
                     {
@@ -94,9 +140,82 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
             });
 
         }
+        this.loadCodes=function(){
+            $scope.codeArray=[];
+           var promise = accessService.getData("php/controllers/MainController.php", true, "POST", {controllerType:1,action:10020,jsonData:JSON.stringify("")});
+
+            
+            promise.then(function (outPutData) {
+                    if(outPutData[0]=== true)
+                    {
+                        for (var i = 0; i < outPutData[1].length; i++) {
+                            
+                            
+                            var livingBeingObj;
+                            
+                            if(outPutData[1][i].specie.livingBeing.type=='animal'){
+                                //if animal
+                                var animalObj=new Animal();
+                                    animalObj.construct(outPutData[1][i].specie.livingBeing.id,outPutData[1][i].specie.livingBeing.name,
+                                    outPutData[1][i].specie.livingBeing.type,outPutData[1][i].specie.livingBeing.classe,
+                                    outPutData[1][i].specie.livingBeing.family,outPutData[1][i].specie.livingBeing.order,
+                                    outPutData[1][i].specie.livingBeing.kingdom,outPutData[1][i].specie.livingBeing.superKingdom,
+                                    outPutData[1][i].specie.livingBeing.subKingdom,outPutData[1][i].specie.livingBeing.superEdge,
+                                    outPutData[1][i].specie.livingBeing.edge,outPutData[1][i].specie.livingBeing.subEdge,
+                                    outPutData[1][i].specie.livingBeing.subClasse,outPutData[1][i].specie.livingBeing.subOrder,
+                                    outPutData[1][i].specie.livingBeing.branch);
+                                livingBeingObj=animalObj;
+                                
+                            }else{
+                                //if plant
+                                    var plantObj=new Plant();
+                                    plantObj.construct(outPutData[1][i].specie.livingBeing.id,outPutData[1][i].specie.livingBeing.name,
+                                    outPutData[1][i].specie.livingBeing.type,outPutData[1][i].specie.livingBeing.classe,
+                                    outPutData[1][i].specie.livingBeing.family,outPutData[1][i].specie.livingBeing.order,
+                                    outPutData[1][i].specie.livingBeing.kingdom,outPutData[1][i].specie.livingBeing.divition,
+                                    outPutData[1][i].specie.livingBeing.subFamily,outPutData[1][i].specie.livingBeing.tribe,
+                                    outPutData[1][i].specie.livingBeing.gender);
+                                    livingBeingObj=plantObj;
+                            } 
+                            var specieObj= new Specie();
+                                specieObj.construct(outPutData[1][i].specie.id,outPutData[1][i].specie.name,outPutData[1][i].specie.description,livingBeingObj,outPutData[1][i].specie.img);
+
+                            var codeObj = new Code();
+                                codeObj.construct(outPutData[1][i].id,specieObj,outPutData[1][i].name,
+                                outPutData[1][i].type,outPutData[1][i].length,outPutData[1][i].weight,outPutData[1][i].description);
+
+
+                               
+
+                                $scope.codeArray.push(codeObj);
+                            
+                         }
+                         
+                         $scope.filteredDataCodes =  $scope.codeArray;
+                    }
+                    else
+                    {
+                            if(angular.isArray(outPutData[1]))
+                            {
+                                    alert(outPutData[1]);
+                            }
+                            else {alert("There has been an error in the server, try later");}
+                    }
+            });
+        }
 }]);
 
 //TEMPLATES
+    angular.module("BioLifeApp").directive("codesView", function (){
+        return {
+          restrict: 'E',
+          templateUrl:"view/templates/article-views/codes-view.html",
+          controller:function(){
+
+          },
+          controllerAs: 'codesView'
+        };
+      });
     angular.module("BioLifeApp").directive("specieDetailsView", function (){
         return {
           restrict: 'E',

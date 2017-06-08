@@ -6,7 +6,7 @@
 require_once "ControllerInterface.php";
 require_once "../model/Article.php";
 require_once "../model/persist/ArticleADO.php";
-
+require_once "../model/persist/codeADO.php";
 
 class PublicationControllerClass implements ControllerInterface {
 	private $action;
@@ -49,7 +49,9 @@ class PublicationControllerClass implements ControllerInterface {
 			case 10010:
                             $outPutData = $this->entryArticle();
                             break;
-                            
+                         case 10020:
+                            $outPutData = $this->getAllCodes();
+                            break; 
 			default:
 				$errors = array();
 				$outPutData[0]=false;
@@ -85,6 +87,30 @@ class PublicationControllerClass implements ControllerInterface {
 				$arToLocal[] = $art->getAll();
 			}
 			$outPutData[] = $arToLocal;
+		}
+
+		return $outPutData;
+	}
+        
+        private function getAllCodes() {
+		$outPutData = array();
+                
+                $codeAnimals=codeADO::findByAnimals();
+                $codePlants=codeADO::findByPlants();
+                $codeArray = array_merge($codeAnimals,$codePlants);
+
+		if(count($codeArray) == 0) {
+			$outPutData[]= false;
+			$errors = array();
+			$errors[]="No Codes found in the database";
+			$outPutData[] = $errors;
+		} else {
+			$outPutData[]= true;
+			$codeToLocal = array();
+			foreach ($codeArray as $code) {
+				$codeToLocal[] = $code->getAll();
+			}
+			$outPutData[] = $codeToLocal;
 		}
 
 		return $outPutData;
