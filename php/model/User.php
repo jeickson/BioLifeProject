@@ -5,7 +5,6 @@ require_once "EntityInterface.php";
 class UserClass implements EntityInterface {
 
 
-    private $id;
     private $nick;
     private $password;
     private $name;
@@ -31,10 +30,6 @@ class UserClass implements EntityInterface {
     private static $colNameRole = "role";
 
     function __construct() {}
-
-    function getId() {
-        return $this->id;
-    }
 
     function getNick() {
         return $this->nick;
@@ -116,9 +111,6 @@ class UserClass implements EntityInterface {
         return self::$colNameRole;
     }
 
-    function setId($id) {
-        $this->id = $id;
-    }
 
     function setNick($nick) {
         $this->nick = $nick;
@@ -203,7 +195,7 @@ class UserClass implements EntityInterface {
     public function getAll() {
   	$data = array();
 
-    $data["id"] = $this->id;
+    
     $data["nick"] = $this->nick;
     $data["password"] = $this->password;
     $data["name"] = $this->name;
@@ -217,8 +209,8 @@ class UserClass implements EntityInterface {
 	return $data;
     }
 
-    public function setAll($id, $nick, $password, $name, $surname, $email, $age, $birthdate, $address, $role) {
-      $this->setId($id);
+    public function setAll($nick, $password, $name, $surname, $email, $age, $birthdate, $address, $role) {
+
       $this->setNick($nick);
       $this->setPassword($password);
       $this->setName($name);
@@ -231,8 +223,7 @@ class UserClass implements EntityInterface {
     }
 
     public function toString() {
-        $toString = "User[id=" . $this->id . "][name=" . $this->getName(). "][surname=" . $this->getSurname() . "][age=" . $this->age . "][email=" . $this->mail . "][city=".$this->city."][state=".$this->state."][userType=".$this->userType."]";
-		return $toString;
+       
     }
 }
 ?>

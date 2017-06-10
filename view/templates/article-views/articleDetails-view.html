@@ -7,16 +7,16 @@
                 </div>
                 <div class="col-md-8">
                     <p class="h4"><strong>Author:</strong> &nbsp;{{articleSelected.getUser()}}</p>
+                    <hr>
                     <p class="h4"><strong>Date:</strong>&nbsp;{{articleSelected.getDate()}}</p>
-                    <p class="h4"><strong>Related Specie:</strong></p>
-                    <div class="row">
-                        <div class="col-md-3" >
-                            <a href=""  ng-click="ArtCtrl.specieDetailsView(articleSelected.code.specie)" class="thumbnail" ><img src="img/species/{{articleSelected.code.specie.img}}" alt=""></a>
-                        </div>
-                   </div>
+                    
                 </div>
-                <div class="col-md-4">
-                       <a href="" class="thumbnail"><img src="http://placehold.it/260x180" alt=""></a>
+               
+                    <p class="h4"><strong>Related Specie:</strong></p>
+               
+                <div class="col-md-3">
+                    <a href=""  ng-click="ArtCtrl.specieDetailsView(articleSelected.code.specie)" class="thumbnail" ><img src="img/species/{{articleSelected.code.specie.img}}" alt=""></a>
+                     
                 </div> 
                
                <div class="col-lg-12">
@@ -47,8 +47,8 @@
                                  <td><a href="" ng-click="ArtCtrl.specieDetailsView(articleSelected.code.specie)">{{articleSelected.code.getSpecie().name}}</a></td>
  
                                  <td>{{articleSelected.code.getLength()}}</td>
-                                 <td>{{articleSelected.code.getWeight()}}</td>
-                                 <td class="text-center">
+                                 <td>{{articleSelected.code.getWeight()}} <span ng-show="articleSelected.code.getWeight()!=undefined && articleSelected.code.getWeight()!=''">Da</span></td>
+                                 <td class="text-center" ng-show="$parent.userlogged==1">
                                      <button class="btn btn-success " ><span class="glyphicon glyphicon-shopping-cart"></span></button>
                                  </td>
                              </tr>

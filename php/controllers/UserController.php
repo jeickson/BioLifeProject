@@ -125,18 +125,19 @@ class UserControllerClass implements ControllerInterface {
 
 		if (count($userList)==0) {
 			$outPutData[0]=false;
-			$errors[]="No user has found with these data";
+			$errors[]="user or password incorrect, please try it again";
 			$outPutData[1]=$errors;
 		} else {
 			$usersArray=array();
 
 			foreach ($userList as $user) {
+                           
 				$usersArray[] = $user->getAll();
 			}
 
 			$_SESSION['connectedUser'] = $userList[0];
 
-			$outPutData[1] = $usersArray;
+			$outPutData[1] = $usersArray[0];
 		}
 
 		return $outPutData;

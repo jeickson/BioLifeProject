@@ -3,7 +3,7 @@
 	angular.module("BioLifeApp").controller("UserController", ['$http','$scope', '$window', '$cookies','accessService', 'userConnected',function ($http, $scope, $window, $cookies, accessService, userConnected){
 
 		//scope variables
-                $scope.userlogged=0;
+                
 		$scope.userOption=0;
 		$scope.user = new User();
 		$scope.errorLogIn;
@@ -50,15 +50,19 @@
 			promise.then(function (outPutData) {
 				if(outPutData[0]=== true)
 				{
-                                    $scope.user = outPutData[1][0];
-                                    $scope.userlogged=1;
+                                    $scope.user = new User();
+                                    var user = new User();
+                                    user.construct(outPutData[1].nick, outPutData[1].password, outPutData[1].name, outPutData[1].surname,outPutData[1].email,outPutData[1].age,outPutData[1].birthdate,outPutData[1].address,outPutData[1].role);
+                                    userConnected.user=user;
+                                    
+                                    $scope.$parent.userlogged=1;
 					
 				}
 				else
 				{
 					if(angular.isArray(outPutData[1]))
 					{
-						$scope.errorLogIn = JSON.stringify(outPutData[1])	;
+						$scope.errorLogIn = outPutData[1][0]	;
 					}
 					else {$scope.errorLogIn = "There has been an error in the server, try later";}
 				}
@@ -79,7 +83,7 @@
 				{
 					
 						sessionStorage.userConnected = JSON.stringify(outPutData[1][0]);
-						$scope.user = outPutData[1][0];
+						
 						$scope.userlogged=1;
 					
 				}
@@ -93,7 +97,15 @@
 				}
 			});
 		}
-
+                /**
+			 *@name logOut
+			 *@desc destroies the the session
+			 *@author Luis Jeickson
+			 *@version 1.0
+			 *@date 25/05/2017
+			 *@param <none>
+			 *@return <none>
+		*/
 		this.logOut = function ()
 		{
 
@@ -104,7 +116,8 @@
 				if(outPutData[0] === true)
 				{
 					if (typeof(Storage) !== "undefined") {
-						$scope.userlogged=0;
+                                                $scope.errorLogIn=undefined;
+						$scope.$parent.userlogged=0;
 					} else {
 						alert("Your browser is not compatible with this application, upgrade it plase!");
 					}
@@ -121,7 +134,7 @@
 		}
 
 	}]);
-
+        //TEMPLATES
 	angular.module('BioLifeApp').directive("userDataManagement", function (){
 		return {
 			restrict: 'E',

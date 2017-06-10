@@ -52,7 +52,7 @@ class UserADO implements EntityInterfaceADO {
     */
     public static function fromResultSet( $res ) {
 	//We get all the values form the query
-		$id = $res[ UserADO::$colNameId];
+		
     $nick = $res[UserADO::$colNameNick];
     $password = $res[UserADO::$colNamePassword];
     $name = $res[UserADO::$colNameName];
@@ -65,7 +65,7 @@ class UserADO implements EntityInterfaceADO {
 
     //Object construction
     $entity = new userClass();
-    $entity->setId($id);
+    
     $entity->setNick($nick);
     $entity->setPassword($password);
     $entity->setName($name);

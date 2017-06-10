@@ -65,7 +65,7 @@ function toggleID(id){
 
 // Angular code
 (function(){
-  var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination']);
+  var BioLifeApp =angular.module ("BioLifeApp", ["ng-currency", "ui.bootstrap", "ngCookies",'angularUtils.directives.dirPagination','ngMessages','ngMaterial']);
 
     //Routes
 /* BioLifeApp.config(function($routeProvider) {
@@ -91,6 +91,7 @@ function toggleID(id){
             redirectTo: '/'
         });
 });*/
+ 
     //TEMPLATES
 
     BioLifeApp.directive("cartView", function (){

@@ -22,16 +22,21 @@
       
       <div class="col-md-4 text-center">
         <label for="Date">Date</label>
-        <select class="form form-control" name="Date">
-        </select>
+        <div flex-gt-xs>    
+        <md-datepicker  class="md-block" ng-model="myDateFilter" md-placeholder="Enter date" ng-change="ArtCtrl.formateDate()"></md-datepicker>
+        </div>
+
       </div>
       <div class="col-md-4 text-center">
         <label for="Specie">Specie</label>
-        <input type="text" class="form form-control" name="Specie" >
+        <input type="text" class="form form-control" name="Specie" ng-model="specieNameFilter">
       </div>
       <div class="col-md-4 text-center">
         <label for="Category">Category</label>
-        <select class="form form-control" name="Category">
+        <select class="form form-control" name="Category" ng-model="categoryFilter">
+            <option value="" selected>All</option>
+            <option value="animal">Animal</option>
+            <option value="plant">Plant</option>
         </select>
       </div>
     </div>
@@ -39,15 +44,20 @@
       
     <div class="row">
           
-    
+        <div class="alert alert-danger " ng-show="articleArray<1">
+
+                        There are not articles yet
+        </div>
+        <div class="alert alert-warning " ng-show="filteredDataArticle<1">
+
+                        There are not articles with this filter
+        </div>
         <div class="col-md-4" dir-paginate="articule in filteredDataArticle | itemsPerPage: pageSize" pagination-id="articlePagination" current-page="currentPage"  >
                   
                     <div class="panel panel-default">
                        <div class="panel-heading"><strong><a class="post-title" href="" ng-click="ArtCtrl.articleDetailsView(articule)">{{articule.title}}</a></strong></div>
                            <div class="panel-body">
-                               <div class="col-md-6">
-                                   <a href="" class="thumbnail"><img src="http://placehold.it/260x180" alt="" ></a>
-                               </div>     
+                                  
                                <p>
                                 {{articule.abstract | limitTo : 200}}...
                                </p>

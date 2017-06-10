@@ -9,17 +9,23 @@
 (function () {
 angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window', '$cookies','$filter','accessService',function ($scope, $window, $cookies,$filter,accessService){
       
-      //Scope
-      $scope.articleArray=new Array();
-      $scope.articleSelected=new Article();
-      $scope.specieSelected;
-      $scope.codeArray=new Array();
-        //pagination
-        $scope.filteredDataArticle;
-	$scope.pageSize = 6;
-	$scope.currentPage = 1;
-        $scope.pageSize2 = 10;
-	
+    //Scope
+    $scope.articleArray=new Array();
+    $scope.articleSelected=new Article();
+    $scope.specieSelected;
+    $scope.codeArray=new Array();  
+    $scope.articleNameFilter;
+    //pagination
+    $scope.filteredDataArticle;
+    $scope.filteredDataCodes;
+    $scope.pageSize = 6;
+    $scope.currentPage = 1;
+    $scope.pageSize2 = 10;
+    //datepicker variable
+    $scope.myDateFilter;
+    this.isOpen = false;
+    $scope.myDateFilterFormated;
+        
         
         this.articleDetailsView=function(article){
                $scope.articleSelected=article;
@@ -29,7 +35,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
         this.specieDetailsView=function(specie){
                 $scope.specieSelected=specie;
                $scope.$parent.actionView="specieDetails";
-               alert(specie.getImg());
+               
 
             }
         this.filter=function(){
@@ -138,7 +144,10 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
                             else {alert("There has been an error in the server, try later");}
                     }
             });
-
+            
+            $scope.$watch("articleNameFilter+myDateFilterFormated+specieNameFilter+categoryFilter",function () {
+                    $scope.filteredDataArticle = $filter('filter')($scope.articleArray,{code:{specie:{name:$scope.specieNameFilter,livingBeing:{type:$scope.categoryFilter}}},date:$scope.myDateFilterFormated,title:$scope.articleNameFilter});
+            });
         }
         this.loadCodes=function(){
             $scope.codeArray=[];
@@ -202,6 +211,25 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
                             else {alert("There has been an error in the server, try later");}
                     }
             });
+        }
+        
+        this.formateDate=function(){
+            if($scope.myDateFilter!=undefined){
+                    var dd = $scope.myDateFilter.getDate();
+                var mm = $scope.myDateFilter.getMonth()+1; //January is 0!
+
+                var yyyy = $scope.myDateFilter.getFullYear();
+                if(dd<10){
+                    dd='0'+dd;
+                } 
+                if(mm<10){
+                    mm='0'+mm;
+                } 
+                $scope.myDateFilterFormated = dd+'-'+mm+'-'+yyyy;
+            }else{
+                $scope.myDateFilterFormated="";
+            }
+            
         }
 }]);
 

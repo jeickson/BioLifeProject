@@ -11,7 +11,7 @@
 function User()
 {
     //Attributes declaration
-    this.id;
+
     this.nick;
     this.password;
     this.name;
@@ -23,9 +23,8 @@ function User()
     this.role;
 
     //methods declaration
-    this.construct = function (id, nick, password, name, surname, email, age, birthdate, address, role)
+    this.construct = function (nick, password, name, surname, email, age, birthdate, address, role)
     {
-        this.setId(id);
         this.setNick(nick);
         this.setPassword(password);
         this.setName(name);
@@ -38,7 +37,7 @@ function User()
     }
 
     //setters
-    this.setId = function (id) {this.id=id;}
+
     this.setNick = function (nick) {this.nick=nick;}
     this.setPassword = function (password) {this.password=password;}
     this.setName = function (name) {this.name=name;}
@@ -50,7 +49,7 @@ function User()
     this.setRole = function (role) {this.role=role;}
 
     //getters
-    this.getId = function () {return this.id;}
+
     this.getNick = function () {return this.nick;}
     this.getPassword = function () {return this.password;}
     this.getName = function () {return this.name;}
@@ -70,7 +69,7 @@ function User()
    */
     this.toString = function ()
     {
-    	var userString ="id="+this.getId()+" nick="+this.getNick()+" password="+this.getPassword()+" name="+this.getName()
+    	var userString =" nick="+this.getNick()+" password="+this.getPassword()+" name="+this.getName()
       +" surname="+this.getSurname()+" email="+this.getEmail()+" age="+this.getAge()+
       " birthDate="+this.getBirthdate()+" role="+this.getRole();
 

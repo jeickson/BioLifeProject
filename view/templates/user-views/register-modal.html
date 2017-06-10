@@ -7,33 +7,50 @@
     </div>
     <div class="modal-body">
   <!--Register Form-->
-  <form  class="contact_form" name="registerForm" id="registerForm"  novalidate>
+  <form  class="contact_form" name="registerForm" id="registerForm" novalidate>
       <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
       <table class="table table-hover">
         <tr>
-          <td colspan="2"><input type="text" class="form form-control" ng-model="user.nick" placeholder="Username*" required /></td>
+          <td colspan="2"><input type="text" class="form form-control" ng-model="user.nick" placeholder="User Nick*" required /></td>
         </tr>
         <tr>
           <td><input type="text" class="form form-control" placeholder="Name*" ng-model="user.name" required/></td>
-          <td><input type="text" class="form form-control" placeholder="Surname*"  ng-model="user.surname" required/></td>
+          <td><input type="text" class="form form-control" placeholder="Surname"  ng-model="user.surname"></td>
         </tr>
         <tr>
-          <td><input type="password" class="form form-control" ng-model="user.password" placeholder="Password" required /></td>
-          <td><input type="password" class="form form-control" placeholder="Repeat Password" name="Password2" required /></td>
+          <td><input type="password" class="form form-control" ng-model="user.password" placeholder="Password*" required /></td>
+          <td><input type="password" class="form form-control" placeholder="Repeat Password*" name="Password2" required /></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email*" /></td>
+          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email*" required/></td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text" class="form form-control" ng-model="user.birthdate" placeholder="Birthday*" /></td>
+          <td colspan="2">
+              <div class="col-md-12">
+            <p class="input-group input-group">
+                <input type="text" class="form-control"  placeholder="Birthdate*"
+                    uib-datepicker-popup="{{format}}"
+                    is-open="birthDate.opened"
+                    datepicker-options="dateOptions"
+                    alt-input-formats="altInputFormats"
+                    close-text="Close"
+                    ng-required="true"
+                    ng-model="user.birthdate"
+                    readonly/>
+                    <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openBirthDate()"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+            </p>
+            </div>
+          </td>
         </tr>
         <tr>
-          <td colspan="2"><input type="text" class="form form-control" ng-model="user.address" placeholder="Address*" placeholder="DD/MM/YYYY" maxlength="10" size="10" /></td>
+          <td colspan="2"><input type="text" class="form form-control" ng-model="user.address" placeholder="Address" /></td>
         </tr
         <tr>
-          <td colspan="2"><button class="btn btn-block"  ng-click="userCtrl.Register()">Register</button></td>
+          <td colspan="2"><button class="btn btn-block"  ng-click="userCtrl.Register()" ng-disabled="registerForm.$invalid">Register</button></td>
         </tr>
-        >
+        
       </table>
   </form>
     </div>
