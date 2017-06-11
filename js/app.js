@@ -94,16 +94,7 @@ function toggleID(id){
  
     //TEMPLATES
 
-    BioLifeApp.directive("cartView", function (){
-    return {
-      restrict: 'E',
-      templateUrl:"view/templates/cart-view.html",
-      controller:function(){
-
-      },
-      controllerAs: 'cartView'
-    };
-  });
+   
     BioLifeApp.directive("mainView", function (){
     return {
       restrict: 'E',
@@ -125,13 +116,20 @@ function toggleID(id){
       controllerAs: 'contactView'
     };
   });
+  //-----------------
   
+  //Factories
   BioLifeApp.factory('userConnected', function(){
 
       var user = new User();
       return user;
   });
+   BioLifeApp.factory('codeCookies', function(){
 
+      var codes = new Array();
+      return codes;
+  });
+  
   BioLifeApp.directive('validFile',function(){
       return {
           require:'ngModel',

@@ -79,14 +79,29 @@ class UserControllerClass implements ControllerInterface {
 		$userObj = json_decode(stripslashes($this->getJsonData()));
 
 		$user = new userClass();
-		$user->setAll(0, $userObj->nick, $userObj->password, $userObj->name, $userObj->surname, $userObj->email, $userObj->age, $userObj->birthdate, $userObj->address, $userObj->role);
+		$user->setAll($userObj->nick, $userObj->password, $userObj->name, $userObj->surname, $userObj->email, $userObj->age, $userObj->birthdate, $userObj->address,"normal");
 
 		$outPutData = array();
-		$outPutData[]= true;
-		$user->setId(UserADO::create($user));
-
-		//the sentence returns de id of the user inserted
-		$outPutData[]= array($user->getAll());
+                $userListNick = UserADO::findByNick($user);
+                $userListEmail=UserADO::findByEmail($user);
+                if(count($userListNick)==0){
+                    if(count($userListEmail)==0){
+                        UserADO::create($user);               
+                        $outPutData[]= true;
+                    }else{
+                        $outPutData[0]=false;
+                        $errors[]="this user email already exist";
+                        $outPutData[1]=$errors;
+                    }
+                    
+                }else{
+                    $outPutData[0]=false;
+                    $errors[]="this user nick  already exist";
+                    $outPutData[1]=$errors;
+                }
+		
+		
+		$outPutData[]="Registration complete!";
 
 		return $outPutData;
 	}

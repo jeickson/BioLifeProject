@@ -52,7 +52,9 @@ html, body { height: 100%; width: 100%; margin: 0;font-family: 'Merriweather', s
 #iconsHeaderDiv{
     padding-top:35px;
 }
-
+.ng-invalid{
+    border-color:red ;
+}
 /* Search */
 
 #searchDiv{

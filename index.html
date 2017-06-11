@@ -52,7 +52,7 @@
         <script src="js/control/BioLifeController.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/control/UserController.js" type="text/javascript" xml:space="preserve"></script>
         <script src="js/control/ArticleController.js" type="text/javascript" xml:space="preserve"></script>
-       
+       <script src="js/control/BioToolsController.js" type="text/javascript" xml:space="preserve"></script>
 
     </head>
     <body ng-controller="BioLifeController as BioLifeCtrl" ng-init="BioLifeCtrl.sessionControl()">
@@ -71,8 +71,8 @@
                                 <button class="btn btn-info" id="loginBtn" ng-click="asideOpenClose()"><span class="glyphicon glyphicon-user icon-size"></span></button>
                             </div>
                             
-                                <div id="cartBtnDiv" class="dropdown" ng-show="$parent.userlogged==1">
-                                  <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                <div id="cartBtnDiv" class="dropdown" ng-show="$parent.userlogged==1" >
+                                  <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false" ><span class="glyphicon glyphicon-shopping-cart"></span></button>
                                          <ul class="dropdown-menu dropdown-cart" role="menu">
                                              <table class="table table-striped">
                                                  <thead>
@@ -82,9 +82,19 @@
                                                     </tr>
                                                  </thead>
                                                  <tbody>
-                                                     <tr>
-                                                         <td>secuencia1</td>
-                                                         <td>dog</td>
+                                                     <tr ng-repeat=" code in $parent.codeCookiesArray" >
+                                                         <td>{{code.name}}</td>
+                                                         <td>{{code.specie.name}}</td>
+                                                         <td class="text-center">
+                                                            <button class="btn btn-danger " ng-click="ArtCtrl.delCookieCode($index)"><span class="glyphicon glyphicon-remove-sign"></span></button>
+                                                        </td>
+                                                     </tr>
+                                                     <tr ng-show="$parent.codeCookiesArray<1">
+                                                         <td colspan="2">
+                                                             <div class="alert alert-warning " >
+                                                                 There are not codes added in this basket                                                             
+                                                            </div>
+                                                         </td>
                                                      </tr>
                                                  </tbody>
                                              </table>
@@ -95,10 +105,10 @@
                                      <div id="searchDiv" >
                                         <form  id="formSearch">
                                             <div class="searchbox">
-                                                <input type="search" placeholder="Search" name="search" ng-model="articleNameFilter" class="searchbox-input" onkeyup="buttonUp();" >
+                                                <input type="search" placeholder="Search" name="search"  ng-change="$parent.actionView='articles'" ng-model="articleNameFilter" class="searchbox-input" onkeyup="buttonUp();" >
                                             </div>
                                             <button  class="searchbox-submit" ><span class="glyphicon glyphicon-search icon-size"></button>
-                                            <span class="searchbox-icon" ng-click="$parent.actionView='articles'"><span class="glyphicon glyphicon-search icon-size"></span>
+                                            <span class="searchbox-icon"><span class="glyphicon glyphicon-search icon-size"></span>
                                         </form>
                                     </div>
                             </div>
@@ -139,12 +149,14 @@
                         <article-create-view ng-show="$parent.actionView==='articleCreate'"></article-create-view>
                     
                </div>
-                
-                 <!-- Cart View-->
-                <cart-view ng-show="actionView==='cart'"></cart-view>
+                <div ng-controller="BioToolsController as BioCtrl">
+                    <!-- Cart View-->
+                   <cart-view ng-show="$parent.actionView==='cart'"></cart-view>
+                   
+                 </div> 
                 <!-- View Contact-->
                 <contact-view ng-show="actionView==='contact'"></contact-view>
-                
+             
              </div>
         
             <!--------------------------------------------------aside--------------------------------------------------->

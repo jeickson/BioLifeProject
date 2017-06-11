@@ -49,7 +49,7 @@
                                  <td>{{articleSelected.code.getLength()}}</td>
                                  <td>{{articleSelected.code.getWeight()}} <span ng-show="articleSelected.code.getWeight()!=undefined && articleSelected.code.getWeight()!=''">Da</span></td>
                                  <td class="text-center" ng-show="$parent.userlogged==1">
-                                     <button class="btn btn-success " ><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                     <button class="btn btn-success " ng-click="ArtCtrl.addCookieCode(articleSelected.code)"><span class="glyphicon glyphicon-shopping-cart"></span></button>
                                  </td>
                              </tr>
                          </tbody>

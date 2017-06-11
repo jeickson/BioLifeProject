@@ -7,22 +7,65 @@
     </div>
     <div class="modal-body">
   <!--Register Form-->
+    <div class="alert alert-success " ng-show="registrationSuccss">
+              {{registrationMSSG}}
+     </div>
+  <div class="alert alert-warning " ng-show="registrationErr">
+              {{registrationMSSG}}
+     </div>
   <form  class="contact_form" name="registerForm" id="registerForm" novalidate>
       <img id="registeIcon" class="center-block" src="img/register.png" alt="Register Icon">
       <table class="table table-hover">
         <tr>
-          <td colspan="2"><input type="text" class="form form-control" ng-model="user.nick" placeholder="User Nick*" required /></td>
+          <td colspan="2">
+              
+                <input type="text" class="form form-control" ng-model="user.nick" name="nick" placeholder="User Nick*"  ng-pattern="/^[a-z0-9_-]+$/" required />
+                 <div ng-messages="registerForm.nick.$error" ng-if='registerForm.nick.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>    
+                    <div ng-message="pattern"> It have characters no valids (a-z with - or _)</div>   
+                </div>
+              
+          </td>
         </tr>
         <tr>
-          <td><input type="text" class="form form-control" placeholder="Name*" ng-model="user.name" required/></td>
-          <td><input type="text" class="form form-control" placeholder="Surname"  ng-model="user.surname"></td>
+          <td>
+              <input type="text" class="form form-control" placeholder="Name*" name="nameUser" ng-model="user.name" ng-pattern="/^[aA-zZ]+$/" required/>
+              <div ng-messages="registerForm.nameUser.$error" ng-if='registerForm.nameUser.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="pattern"> It have characters no valids (only comun chars)</div> 
+               </div>
+          </td>
+          <td>
+              <input type="text" class="form form-control" name="surname" placeholder="Surname"  ng-model="user.surname" ng-pattern="/^[aA-zZ]+$/">
+               <div ng-messages="registerForm.surname.$error" ng-if='registerForm.surname.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="pattern"> It have characters no valids (only comun chars)</div> 
+               </div>
+          </td>
         </tr>
         <tr>
-          <td><input type="password" class="form form-control" ng-model="user.password" placeholder="Password*" required /></td>
-          <td><input type="password" class="form form-control" placeholder="Repeat Password*" name="Password2" required /></td>
+          <td>
+              <input type="password" name="password" class="form form-control" ng-model="user.password" placeholder="Password*" required />
+              <div ng-messages="registerForm.password.$error" ng-if='registerForm.password.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>                   
+               </div>
+          </td>
+          <td>
+              <input type="password" class="form form-control" name="confirmPass" placeholder="Repeat Password*" ng-model="confirmPass" ng-pattern="\b{{user.password}}\b" required />
+              <div ng-messages="registerForm.confirmPass.$error" ng-if='registerForm.confirmPass.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>   
+                    <div ng-message="pattern">it is not the same password</div>
+               </div>
+           </td>
         </tr>
         <tr>
-          <td colspan="2"><input type="email" class="form form-control" ng-model="user.email" placeholder="Email*" required/></td>
+          <td colspan="2">
+              <input type="email" name="email" class="form form-control" ng-model="user.email" placeholder="Email*" required/>
+              <div ng-messages="registerForm.email.$error" ng-if='registerForm.email.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>
+                    <div ng-message="email">Your email address is invalid</div>
+               </div>
+          </td>
         </tr>
         <tr>
           <td colspan="2">
@@ -36,12 +79,17 @@
                     close-text="Close"
                     ng-required="true"
                     ng-model="user.birthdate"
+                    name="birthdate"
                     readonly/>
                     <span class="input-group-btn">
                             <button type="button" class="btn btn-default" ng-click="openBirthDate()"><i class="glyphicon glyphicon-calendar"></i></button>
                     </span>
             </p>
+            
             </div>
+              <div ng-messages="registerForm.birthdate.$error" ng-if='registerForm.birthdate.$dirty' style="color:maroon" role="alert">
+                    <div ng-message="required">This is required.</div>                   
+               </div>
           </td>
         </tr>
         <tr>

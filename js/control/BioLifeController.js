@@ -7,12 +7,42 @@
 
 //Angular code
 (function () {
-angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window', '$cookies','$filter','accessService', 'userConnected',function ($scope, $window, $cookies,$filter, accessService, userConnected){
+angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window', '$cookies','$filter','accessService', 'userConnected','codeCookies',function ($scope, $window, $cookies,$filter, accessService, userConnected,codeCookies){
       $scope.actionView='main';
       $scope.loginView=false;
       $scope.filterAction;
       $scope.user;
       $scope.userlogged=0;
+       //Cookie variables 
+     $scope.generalName;
+        $scope.path = "/";
+      $scope.domain;
+      $scope.expires;
+      $scope.secure;  
+      $scope.codeCookiesArray=[];
+
+       $scope.loadCookiesCode=function(){
+             var numberCookies = $cookies.get($scope.generalName,{path:$scope.path});
+
+			if(isNaN(numberCookies))
+			{
+				numberCookies = 0;
+			}
+             for (var i = 0; i < numberCookies; i++) {
+                 
+                 
+				var cookieContent = $cookies.getObject($scope.generalName+i,{path:$scope.path});
+
+				var codeCookieObj = new Code();
+                                   
+				codeCookieObj.cookieToObj(cookieContent);
+                               
+				$scope.codeCookiesArray.push(codeCookieObj);
+                                codeCookies.codes=$scope.codeCookiesArray;
+								
+                }
+         }
+      
         /**
                  *@name sessionControl
                  *@desc control the session
@@ -22,6 +52,7 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
                  *@param <none>
                  *@return <none>
         */
+             
         this.sessionControl = function ()
         {
                 
@@ -33,7 +64,9 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
                              $scope.user = new User();
                                     $scope.user.construct(outPutData[1].nick, outPutData[1].password, outPutData[1].name, outPutData[1].surname,outPutData[1].email,outPutData[1].age,outPutData[1].birthdate,outPutData[1].address,outPutData[1].role);
                                     userConnected.user=$scope.user;
-                                   
+                              $scope.generalName=$scope.user.nick;
+                              
+                        $scope.loadCookiesCode();
                             $scope.userlogged=1;
                     }
                     else
@@ -48,6 +81,7 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
 
 
         }
+        
         
        $scope.asideOpenClose=function(){
             

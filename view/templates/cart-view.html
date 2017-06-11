@@ -2,29 +2,35 @@
     <div class="row">
         
         <div class="col-lg-8  col-lg-offset-2  ">
-            <p class="h1 page-header text-center"> Bio Cart <span class="glyphicon glyphicon-shopping-cart"></span></p>
+            <p class="h1 page-header text-center"> Bio Bask <span class="glyphicon glyphicon-shopping-cart"></span></p>
                 
-                <table class="table table-striped table-bordered table-list">
+                <table class="table table-responsive table-striped table-bordered table-list">
                          <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Specie</th>
+                                <th>Description</th>
                                 <th>Length</th>
                                 <th>weight</th>
                                 
                             </tr>
                          </thead>
                          <tbody>
-                             <tr>
-                                 <td>secuencia1</td>
-                                 <td>example</td>
- 
-                                 <td>250</td>
-                                 <td>200</td>
-                                 <td class="text-center">
-                                     <button class="btn btn-danger " ><span class="glyphicon glyphicon-remove-sign"></span></button>
-                                 </td>
+                             <tr ng-repeat="code in $parent.codeCookiesArray">
+                                       <td>{{code.getName()}}</td>
+                                       <td>{{code.specie.getName()}}</td>
+                                       <td class="hidden-xs">{{code.getDesc()}}</td>
+                                       <td>{{code.getLength()}}</td>
+                                       <td>{{code.getWeight()}} <span ng-show="code.getWeight()!=undefined && code.getWeight()!=''">Da</span></td>
+                                 
                              </tr>
+                             <tr ng-show="$parent.codeCookiesArray<1">
+                                 <td colspan="5">
+                                     <div class="alert alert-warning text-center" >
+                                         There are not codes added in this basket                                                             
+                                    </div>
+                                 </td>
+                            </tr>
                          </tbody>
                 </table>
           

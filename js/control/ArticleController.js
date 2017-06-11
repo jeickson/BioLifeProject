@@ -7,26 +7,93 @@
 
 //Angular code
 (function () {
-angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window', '$cookies','$filter','accessService',function ($scope, $window, $cookies,$filter,accessService){
+angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window', '$cookies','$filter','accessService', 'userConnected','codeCookies',function ($scope, $window, $cookies,$filter,accessService,userConnected,codeCookies){
       
     //Scope
+    this.user;
     $scope.articleArray=new Array();
     $scope.articleSelected=new Article();
     $scope.specieSelected;
     $scope.codeArray=new Array();  
     $scope.articleNameFilter;
-    //pagination
+    
+    //pagination variables
     $scope.filteredDataArticle;
     $scope.filteredDataCodes;
     $scope.pageSize = 6;
     $scope.currentPage = 1;
+    $scope.currentPage2 = 1;
     $scope.pageSize2 = 10;
-    //datepicker variable
+    
+    //datepicker variables
     $scope.myDateFilter;
     this.isOpen = false;
     $scope.myDateFilterFormated;
+    
+    //Cookie variables      
+    $scope.path = "/";
+    $scope.domain;
+    $scope.expires;
+    $scope.secure;  
+
+    $scope.codeCookiesArray=[];
         
+        this.loadCodesFromFactory=function(){
+            $scope.codeCookiesArray=codeCookies.codes;
+        }
         
+        this.addCookieCode=function(code){
+            
+            var find = false;
+            
+            for(var i=0;i<$scope.$parent.codeCookiesArray.length;i++){
+                if($scope.$parent.codeCookiesArray[i].id===code.id){
+                    find=true;
+                    break;
+                }
+            }
+            if(!find){
+                var numberCookies = $cookies.get($scope.$parent.generalName,{path:$scope.path});
+
+			if(isNaN(numberCookies))
+			{
+				numberCookies = 0;
+			}
+
+                $cookies.putObject($scope.$parent.generalName+numberCookies,code,{path:$scope.path});
+
+		$cookies.put($scope.$parent.generalName,++numberCookies,{path:$scope.path});
+                $scope.$parent.codeCookiesArray.push(code);
+               
+            }else{
+                alert("this code is already added");
+            }
+            
+        }
+        this.delCookieCode=function(index){
+           
+                //Cookies management
+		var numberCookies = $cookies.get($scope.$parent.generalName,{path:$scope.path});
+
+                for (var i = index; i < numberCookies-1; i++)
+                {
+                        $cookies.putObject($scope.$parent.generalName+i,$cookies.getObject($scope.$parent.generalName+(i+1),{path:$scope.path}),{path:$scope.path});
+                }
+                //Remove the last cookie
+		$cookies.remove($scope.$parent.generalName+(numberCookies-1),{path:$scope.path}); 
+                //Update general cookie
+                $scope.$parent.codeCookiesArray.splice(index,1);
+                if($scope.$parent.codeCookiesArray.length-1==0) {
+                        $cookies.remove($scope.$parent.generalName,{path:$scope.path});
+                        
+                }
+                else {
+                        numberCookies -= 1;
+                        $cookies.put($scope.$parent.generalName,numberCookies,{path:$scope.path});
+                }
+                
+            
+        }
         this.articleDetailsView=function(article){
                $scope.articleSelected=article;
                $scope.$parent.actionView="articleDetails";
@@ -82,6 +149,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
         }
             
         this.loadArticles=function(){
+            
             var promise = accessService.getData("php/controllers/MainController.php", true, "POST", {controllerType:1,action:10000,jsonData:JSON.stringify("")});
 
             
@@ -194,7 +262,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
                                 outPutData[1][i].type,outPutData[1][i].length,outPutData[1][i].weight,outPutData[1][i].description);
 
 
-                               
+                              
 
                                 $scope.codeArray.push(codeObj);
                             

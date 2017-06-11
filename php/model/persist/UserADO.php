@@ -152,7 +152,18 @@ class UserADO implements EntityInterfaceADO {
 
 		return UserADO::findByQuery($cons,$arrayValues);
     }
+    /**
+	* findByEmail()
+	 * It runs a query and returns an object array
+	 * @param name
+	 * @return object with the query results
+    */
+    public static function findByEmail( $user ) {
+		$cons = "select * from `".UserADO::$tableName."` where ".UserADO::$colNameEmail." = ?";
+		$arrayValues = [$user->getEmail()];
 
+		return UserADO::findByQuery($cons,$arrayValues);
+    }
     /**
 	* findByNickAndPass()
 	 * It runs a query and returns an object array
@@ -196,20 +207,19 @@ class UserADO implements EntityInterfaceADO {
 		}
 		$cons="insert into ".UserADO::$tableName." (`nick`, `password`, `name`, `surname`, `email`, `age`, `birthdate`, `address`, `role`) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		$arrayValues= [$user->getNick(),
-    $user->getPassword(),
-    $user->getName(),
-    $user->getSurname(),
-    $user->getEmail(),
-    $user->getAge(),
-    $user->getBirthdate(),
-    $user->getAddress(),
-    $user->getRole()];
+                $user->getPassword(),
+                $user->getName(),
+                $user->getSurname(),
+                $user->getEmail(),
+                $user->getAge(),
+                $user->getBirthdate(),
+                $user->getAddress(),
+                $user->getRole()];
 
 		$id = $conn->executionInsert($cons, $arrayValues);
 
-		$user->setId($id);
-
-	    return $user->getId();
+		
+	   
 	}
 
     /**

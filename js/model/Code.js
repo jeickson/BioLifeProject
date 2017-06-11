@@ -57,4 +57,19 @@ function Code()
     {
     	
     }
+    
+    this.cookieToObj = function (cookieObj)
+	{
+            //Specie
+            var specie = new Specie();
+            specie.construct(cookieObj.specie.id,cookieObj.specie.name,cookieObj.specie.description,"",cookieObj.specie.img);
+            //Code
+             this.setId(cookieObj.id); 
+             this.setSpecie(specie);
+             this.setName(cookieObj.name);
+             this.setType(cookieObj.type);
+             this.setLength(cookieObj.length);
+             this.setWeight(cookieObj.weight);
+             this.setDesc(cookieObj.description);
+	}
 }

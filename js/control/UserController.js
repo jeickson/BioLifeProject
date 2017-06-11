@@ -7,7 +7,9 @@
 		$scope.userOption=0;
 		$scope.user = new User();
 		$scope.errorLogIn;
-
+                $scope.registrationMSSG='';
+                $scope.registrationSuccss=false;
+                 $scope.registrationErr=false;
 		//Variables for ng-pattern
 		$scope.areChars = /^[a-zA-Z\s]*$/;
 		$scope.emailFormat = /^[a-z]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/;
@@ -56,10 +58,11 @@
                                     userConnected.user=user;
                                     
                                     $scope.$parent.userlogged=1;
-					
+                                     location.reload();
 				}
 				else
 				{
+                                    
 					if(angular.isArray(outPutData[1]))
 					{
 						$scope.errorLogIn = outPutData[1][0]	;
@@ -71,27 +74,28 @@
 
 		this.Register = function ()
 		{
-			//copy
-			$scope.user = angular.copy($scope.user);
-			alert($scope.user);
+			
 
 			//Server conenction to verify user's data
 			var promise = accessService.getData( "php/controllers/MainController.php", true, "POST", {controllerType:0,action:10010,jsonData:JSON.stringify($scope.user)});
 
 			promise.then(function (outPutData) {
 				if(outPutData[0]=== true)
-				{
-					
-						sessionStorage.userConnected = JSON.stringify(outPutData[1][0]);
-						
-						$scope.userlogged=1;
+				{           $scope.registrationErr=false;
+                                            $scope.registrationSuccss=true;
+                                            $scope.registrationMSSG=outPutData[1];	
+                                            $scope.user = new User();
+                                            $scope.confirmPass="";
+                                            $scope.registerForm.$setPristine();
 					
 				}
 				else
 				{
 					if(angular.isArray(outPutData[1]))
 					{
-						alert(outPutData[1]);
+                                            $scope.registrationSuccss=false;
+                                            $scope.registrationErr=true;
+						$scope.registrationMSSG=outPutData[1][0];
 					}
 					else {alert("There has been an error in the server, try later");}
 				}
@@ -117,6 +121,7 @@
 				{
 					if (typeof(Storage) !== "undefined") {
                                                 $scope.errorLogIn=undefined;
+                                                $scope.$parent.actionView="main";
 						$scope.$parent.userlogged=0;
 					} else {
 						alert("Your browser is not compatible with this application, upgrade it plase!");
