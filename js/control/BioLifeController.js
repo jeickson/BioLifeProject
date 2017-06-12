@@ -38,9 +38,11 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
 				codeCookieObj.cookieToObj(cookieContent);
                                
 				$scope.codeCookiesArray.push(codeCookieObj);
-                                codeCookies.codes=$scope.codeCookiesArray;
+                                
 								
                 }
+                
+                codeCookies.codes=$scope.codeCookiesArray;
          }
       
         /**

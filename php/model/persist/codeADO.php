@@ -21,9 +21,10 @@ class codeADO implements EntityInterfaceADO {
     private static $tableNameIdCode = "idCode";    
     private static $colNameName = "name";
     private static $colNameDescCode = "descCode";
-    private static $colNameTypeCode = "type";
+    private static $colNameTypeCode = "typeCode";
     private static $colNameWeightCode = "weight";
     private static $colNameLength = "length";
+    private static $colNameSeq = "sequence";
     
      //----------Data base Values Specie---------------------------------------
     private static $tableNameSpecie = "Specie";
@@ -71,7 +72,7 @@ class codeADO implements EntityInterfaceADO {
     }
 
     public static function findByPlants() {
-        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type,g.sequence,g.length,g.weight,"
+        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type as typeCode,g.sequence,g.length,g.weight,"
                 . "s.name as nameSpecie,s.description,s.img,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
                 . "p.divition,p.subFamily,p.tribe,p.gender from  GeneticCode g,Specie s,LivingBeings l,Plants p where "
                 . "g.idSpecie = s.id AND s.idLivingBeing = l.id AND  l.id=p.idLivingBeing" ;
@@ -80,7 +81,7 @@ class codeADO implements EntityInterfaceADO {
          return codeADO::findByQuery( $cons, $arrayValues );
     }
      public static function findByAnimals() {
-        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type,g.sequence,g.length,g.weight,"
+        $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type as typeCode,g.sequence,g.length,g.weight,"
                 . "s.name as nameSpecie,s.description,s.img,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
                 . "t.superKingdom,t.subKingdom,t.superEdge,t.edge,t.subEdge,t.subClasse,t.subOrder,t.branch from GeneticCode g,Specie s,LivingBeings l,Animals t where "
                 . "g.idSpecie = s.id AND s.idLivingBeing = l.id AND l.id=t.idLivingBeings " ;
@@ -113,6 +114,7 @@ class codeADO implements EntityInterfaceADO {
         $weightCode = $res[codeADO::$colNameWeightCode];
         $typeCode = $res[codeADO::$colNameTypeCode];
         $legthCode = $res[codeADO::$colNameLength];
+        $sequence=$res[codeADO::$colNameSeq];
         //Specie
         $idSpecie = $res[ codeADO::$colNameIdSpecie];
         $nameSpecie = $res[codeADO::$colNameNameSpecie];
@@ -164,7 +166,7 @@ class codeADO implements EntityInterfaceADO {
              $specie->setAll($idSpecie, $nameSpecie, $descSpecie, $plant,$img);
          }
         $codeObj= new CodeClass();
-        $codeObj->setAll($idCode,$specie,$nameCode,$descCode,$typeCode,$legthCode,$weightCode);
+        $codeObj->setAll($idCode,$specie,$nameCode,$descCode,$typeCode,$legthCode,$weightCode,$sequence);
         
         
         return $codeObj;

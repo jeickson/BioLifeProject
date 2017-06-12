@@ -10,6 +10,7 @@ class CodeClass implements EntityInterface {
     private $specie;
     private $name;
     private $description;
+    private $sequence;
     private $type;
     private $length;
     private $weight;
@@ -20,6 +21,7 @@ class CodeClass implements EntityInterface {
     //----------Data base Values Code---------------------------------------;
     private static $tableNameCode = "GeneticCode";
     private static $colNameSpecie = "specie";
+    private static $colNameSeq = "sequence";
     private static $colNameName = "name";
     private static $colNameDesc = "description";
     private static $colNameType = "type";
@@ -82,8 +84,19 @@ class CodeClass implements EntityInterface {
     static function getColNameWeight() {
         return self::$colNameWeight;
     }
+    function getSequence() {
+        return $this->sequence;
+    }
 
-    function setId($id) {
+    static function getColNameSeq() {
+        return self::$colNameSeq;
+    }
+
+    static function getColNameLength() {
+        return self::$colNameLength;
+    }
+
+        function setId($id) {
         $this->id = $id;
     }
 
@@ -134,8 +147,19 @@ class CodeClass implements EntityInterface {
     static function setColNameWeight($colNameWeight) {
         self::$colNameWeight = $colNameWeight;
     }
+    function setSequence($sequence) {
+        $this->sequence = $sequence;
+    }
 
+    static function setColNameSeq($colNameSeq) {
+        self::$colNameSeq = $colNameSeq;
+    }
 
+    static function setColNameLength($colNameLength) {
+        self::$colNameLength = $colNameLength;
+    }
+
+    
 
     public function getAll() {
   	$data = array();
@@ -146,11 +170,12 @@ class CodeClass implements EntityInterface {
         $data["length"] = $this->length;
         $data["weight"] = $this->weight;
         $data["specie"]= $this->specie->getAll();
-         $data["type"]= $this->type;
+        $data["type"]= $this->type;
+        $data["sequence"]= $this->sequence;
 	return $data;
     }
 
-    public function setAll($id,$specie,$name,$description,$type,$length,$weight) {
+    public function setAll($id,$specie,$name,$description,$type,$length,$weight,$sequence) {
       $this->setId($id);
        $this->setSpecie($specie);
        $this->setName($name);
@@ -158,6 +183,7 @@ class CodeClass implements EntityInterface {
        $this->setType($type);
        $this->setLength($length);
        $this->setWeight($weight);
+       $this->setSequence($sequence);
     }
 
     public function toString() {

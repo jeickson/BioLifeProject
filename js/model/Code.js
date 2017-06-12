@@ -15,13 +15,14 @@ function Code()
     this.specie;
     this.name;
     this.description;
+    this.sequence;
     this.type;
     this.length;
     this.weight;
     
 
     //methods declaration
-    this.construct = function (id, specie, name, type, length, weight,description)
+    this.construct = function (id, specie, name, type, length, weight,description,sequence)
     {
         this.setId(id);
         this.setSpecie(specie);
@@ -30,7 +31,7 @@ function Code()
         this.setLength(length);
         this.setWeight(weight);
         this.setDesc(description);
-        
+        this.setSeq(sequence);
     }
     
     //setters
@@ -41,7 +42,7 @@ function Code()
     this.setLength = function (length) {this.length=length;}
     this.setWeight = function (weight) {this.weight=weight;}
     this.setDesc = function (description) {this.description=description;}
-    
+    this.setSeq = function (sequence) {this.sequence=sequence;}
 
     //getters
     this.getId = function () {return this.id;}
@@ -51,7 +52,7 @@ function Code()
     this.getLength = function () {return this.length;}
     this.getWeight = function () {return this.weight;}
     this.getDesc = function () {return this.description;}
-
+    this.getSeq = function () {return this.sequence;}
   
     this.toString = function ()
     {
@@ -71,5 +72,6 @@ function Code()
              this.setLength(cookieObj.length);
              this.setWeight(cookieObj.weight);
              this.setDesc(cookieObj.description);
+             this.setSeq(cookieObj.sequence);
 	}
 }

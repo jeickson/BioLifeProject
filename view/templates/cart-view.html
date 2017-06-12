@@ -17,6 +17,7 @@
                          </thead>
                          <tbody>
                              <tr ng-repeat="code in $parent.codeCookiesArray">
+                                
                                        <td>{{code.getName()}}</td>
                                        <td>{{code.specie.getName()}}</td>
                                        <td class="hidden-xs">{{code.getDesc()}}</td>
@@ -40,13 +41,13 @@
         <div class="col-lg-8  col-lg-offset-2  ">
             <hr>
             <div class="input-group input-group-lg col-lg-10">
-                <select  class="form-control " aria-label="...">
-                    <option> Generate FASTA</option>
-                    <option> Alignment </option>
+                <select  class="form-control "  ng-model="actionSelected" aria-label="...">
+                    <option value="fasta" selected> Generate FASTA</option>
+                    <option value="alignment"> Alignment </option>
                 </select>           
                 <div class="input-group-btn">
                   <!-- Buttons -->
-                  <button class="btn btn-primary">Action</button>
+                  <button class="btn btn-primary" ng-click="BioCtrl.actionController()">Action</button>
                 </div>
           </div>
         </div>

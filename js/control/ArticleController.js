@@ -45,7 +45,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
         this.addCookieCode=function(code){
             
             var find = false;
-            
+           
             for(var i=0;i<$scope.$parent.codeCookiesArray.length;i++){
                 if($scope.$parent.codeCookiesArray[i].id===code.id){
                     find=true;
@@ -61,7 +61,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
 			}
 
                 $cookies.putObject($scope.$parent.generalName+numberCookies,code,{path:$scope.path});
-
+                  
 		$cookies.put($scope.$parent.generalName,++numberCookies,{path:$scope.path});
                 $scope.$parent.codeCookiesArray.push(code);
                
@@ -71,10 +71,11 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
             
         }
         this.delCookieCode=function(index){
-           
+             
+            
                 //Cookies management
 		var numberCookies = $cookies.get($scope.$parent.generalName,{path:$scope.path});
-
+                
                 for (var i = index; i < numberCookies-1; i++)
                 {
                         $cookies.putObject($scope.$parent.generalName+i,$cookies.getObject($scope.$parent.generalName+(i+1),{path:$scope.path}),{path:$scope.path});
@@ -190,7 +191,8 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
 
                             var codeObj = new Code();
                                 codeObj.construct(outPutData[1][i].code.id,specieObj,outPutData[1][i].code.name,
-                                outPutData[1][i].code.type,outPutData[1][i].code.length,outPutData[1][i].code.weight,outPutData[1][i].code.description);
+                                outPutData[1][i].code.type,outPutData[1][i].code.length,outPutData[1][i].code.weight,
+                                outPutData[1][i].code.description,outPutData[1][i].code.sequence);
 
 
                                 var article = new Article();
@@ -259,7 +261,8 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
 
                             var codeObj = new Code();
                                 codeObj.construct(outPutData[1][i].id,specieObj,outPutData[1][i].name,
-                                outPutData[1][i].type,outPutData[1][i].length,outPutData[1][i].weight,outPutData[1][i].description);
+                                outPutData[1][i].type,outPutData[1][i].length,outPutData[1][i].weight,outPutData[1][i].description,
+                                outPutData[1][i].sequence);
 
 
                               
