@@ -25,7 +25,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
     $scope.filteredDataArticle;
     $scope.filteredDataArticleNoPub;
     $scope.filteredDataCodes;
-    $scope.pageSize = 6;
+    $scope.pageSize = 3
     $scope.currentPage = 1;
     $scope.userArticleFilter;
                 //Codes
@@ -126,7 +126,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
 		$cookies.remove($scope.$parent.generalName+(numberCookies-1),{path:$scope.path}); 
                 //Update general cookie
                 $scope.$parent.codeCookiesArray.splice(index,1);
-                if($scope.$parent.codeCookiesArray.length-1==0) {
+                if($scope.$parent.codeCookiesArray.length==0) {
                         $cookies.remove($scope.$parent.generalName,{path:$scope.path});
                         
                 }
@@ -363,7 +363,7 @@ angular.module("BioLifeApp").controller("ArticleController",['$scope', '$window'
                     {
                             if(angular.isArray(outPutData[1]))
                             {
-                                    alert(outPutData[1]);
+                                    
                             }
                             else {alert("There has been an error in the server, try later");}
                     }

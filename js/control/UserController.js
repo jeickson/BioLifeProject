@@ -136,9 +136,7 @@
 				if(outPutData[0] === true)
 				{
 					if (typeof(Storage) !== "undefined") {
-                                                $scope.errorLogIn=undefined;
-                                                $scope.$parent.actionView="main";
-						$scope.$parent.userlogged=0;
+                                                location.reload();
 					} else {
 						alert("Your browser is not compatible with this application, upgrade it plase!");
 					}

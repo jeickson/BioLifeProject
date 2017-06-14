@@ -53,11 +53,12 @@
                             </div>
                             
                         </div>
-                        <div ng-show="newArticle.code.specie.img!=undefined && newArticle.code.specie.img!=''">
+                        <div ng-show="newArticle.code.specie!=undefined && newArticle.code.specie!=''">
                                 <span class="input-group-addon input-lg">
                                 Related Specie
                               </span>
-                              <div class="thumbnail">
+                            <p class="h3">{{newArticle.code.specie.name}}</p>
+                              <div class="thumbnail" ng-show="newArticle.code.specie.img!=undefined && newArticle.code.specie.img!=''">
                                   <img src="img/species/{{newArticle.code.specie.img}}"  class="img-responsive" alt="foto specie">
 
                               </div> 

@@ -42,7 +42,7 @@
     </div>
       <!-----------------END-------------->
       
-    <div class="row">
+    <div class="  row">
           
         <div class="alert alert-danger " ng-show="articleArray.length<1">
 
@@ -53,7 +53,7 @@
                         There are not articles with this filter
         </div>
 
-        <div class="col-md-4" dir-paginate="articule in filteredDataArticle | itemsPerPage: pageSize" pagination-id="articlePagination" current-page="currentPage"  >
+        <div class="col-md-12" dir-paginate="articule in filteredDataArticle | itemsPerPage: pageSize" pagination-id="articlePagination" current-page="currentPage"  >
                   
                     <div class="panel panel-default">
                        <div class="panel-heading"><strong><a class="post-title" href="" ng-click="ArtCtrl.articleDetailsView(articule)">{{articule.title}}</a></strong></div>
@@ -68,7 +68,7 @@
                             <div class="panel-footer">
                                 <span class="glyphicon glyphicon-user" id="start"></span> <label id="started">By</label> <a href="" id="startedby">{{articule.user}}</a> | 
                                 <span class="glyphicon glyphicon-eye-open" id="visit"></span> <a href="" id="visited">{{articule.date}}</a> | 
-                                <span class="glyphicon glyphicon-comment" id="comment"></span> <a href="" id="comments">Comments</a> | 
+                                <span class="glyphicon glyphicon-comment" id="comment"></span> <a href="" id="comments">{{articule.code.specie.name}}</a> | 
 
                             </div>
                    </div>
