@@ -1,5 +1,5 @@
 /* @name: User
- * @author: Anas
+ * @author: Luis Jeickson Frias Marte
  * @date: 30/04/2017
  * @description: describes the user data
  * @methods:
@@ -60,13 +60,7 @@ function User()
     this.getAddress = function () {return this.address;}
     this.getRole = function () {return this.role;}
 
-    /*
-    * @name: toString()
-    * @author: Anas Serhani
-    * @version: 3.1
-    * @description: convert object to string
-    * @date: 04/03/2015
-   */
+    
     this.toString = function ()
     {
     	var userString =" nick="+this.getNick()+" password="+this.getPassword()+" name="+this.getName()

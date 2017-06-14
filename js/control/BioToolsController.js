@@ -5,6 +5,16 @@
                 //scope variables
                 $scope.actionSelected="fasta";
                 
+                //Methods
+                 /**
+		 *@name actionController
+		 *@desc according the action user has selected  call diferents functions
+		 *@author Luis Jeickson Frias Marte
+		 *@version 1.5
+		 *@date 30/05/2017
+		 *@param <none> 
+		 *@return <none>
+	*/
                 this.actionController=function(){
                     switch($scope.actionSelected) {
                          case "fasta":
@@ -18,7 +28,15 @@
                              alert("invalid option");
                      }
                 }
-            //Methods
+               /**
+		 *@name createFasta
+		 *@desc sends an array of codes to php and later this return URL of the FASTA just created for downloading
+		 *@author Luis Jeickson Frias Marte
+		 *@version 1.5
+		 *@date 30/05/2017
+		 *@param <none> 
+		 *@return <none>
+            */
                 this.createFasta=function(){
                     var jsonData = new Array();
                         var arrayCodes=new Array();

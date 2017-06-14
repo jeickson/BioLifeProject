@@ -1,4 +1,9 @@
 <?php
+/** DBConnect.php
+ * Connects with DB
+ * @author  Luis Jeickson Frias Marte
+ * @version version 2017
+ */
 /* Classe encarregada de gestionar las connexions a la base de dades */
 class DBConnect{
 

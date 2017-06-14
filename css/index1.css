@@ -225,7 +225,10 @@ header .row+.row{
     font-size: 4em;
     margin: 0px;
    padding: 10px;
-   background-color: #5bc0de;
+   
+}
+.active{
+    background-color: #5bc0de;
 }
 #homeIcon:hover{
     background-color: #5bc0de;

@@ -1,6 +1,9 @@
 #advancedFilter{
     display: none;
 }
+#advancedFilter2{
+    display: none;
+}
 /*articles*/
 
 #start { font-size: 1em; }

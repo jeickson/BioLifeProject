@@ -2,43 +2,79 @@
     <div class="row ">
         
         
-        <form class="col-lg-8 col-lg-offset-2 " id="articleCreateForm">
+        <form class="col-lg-8 col-lg-offset-2 " id="articleCreateForm" name="articleCreateForm">
             <div class="panel panel-default">
                 <div class="panel-heading">
                         <p class="h3">New Article</p>
                 </div>
                 <div class="panel-body">
-                    
+                   <div class="alert alert-success " ng-show="createArtSuccss">
+                        {{createArtMSSG}}
+                </div>
+                <div class="alert alert-warning " ng-show="createArtErr">
+                            {{createArtMSSG}}
+                   </div> 
+                     
+
                         <span class="input-group-addon input-lg">
                           Title
                         </span>
-                        <input type="text" class="form-control" >
-                     
-                        <div class="row">
-                            <div class="col-md-6 ">
-                                <span class="input-group-addon input-lg ">
-                                  Specie
-                                </span>
-                                <select  class="form-control" >
-                                     <option></option>
-                                </select>
+                            <input type="text" class="form-control" name="newTitle" ng-model="newArticle.title" ng-maxlength="50" required>
+                            <div ng-messages="articleCreateForm.newTitle.$error" ng-if='articleCreateForm.newTitle.$dirty' style="color:maroon" role="alert">
+                                <div ng-message="required">This is required.</div>    
+                                <div ng-message="maxlength">Title length must to be less than 50</div>   
                             </div>
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
                                 <span class="input-group-addon input-lg">
                                   DNA Code
                                 </span>
-                                    <select  class="form-control" >
-                                        <option></option>
-                                    </select>
+                                 <md-autocomplete name="newCode"
+                                  ng-disabled="ArtCtrl.isDisabled"
+                                  md-no-cache="ArtCtrl.noCache"
+                                  md-selected-item="newArticle.code"
+                                  md-search-text-change="ArtCtrl.searchTextChange(ArtCtrl.searchText)"
+                                  md-search-text="ArtCtrl.searchText"
+                                  md-items="code in codeArray"
+                                  md-item-text="code.name"
+                                  md-min-length="0"
+                                  placeholder="Choose Genetic Code with which is related this article" required >
+                                <md-item-template>
+                                  <span md-highlight-text="ArtCtrl.searchText" md-highlight-flags="^i">{{code.name}}</span>
+                                 </md-item-template>
+                                     <md-not-found>
+                                    No states matching  were found.
+                                    
+                                  </md-not-found>
+                                 </md-autocomplete>
+                                <div ng-messages="articleCreateForm.newCode.$error" ng-if='articleCreateForm.newCode.$dirty' style="color:maroon" role="alert">
+                                        <div ng-message="required">This is required.</div>     
+                                </div>
                             </div>
+                            
                         </div>
+                        <div ng-show="newArticle.code.specie.img!=undefined && newArticle.code.specie.img!=''">
+                                <span class="input-group-addon input-lg">
+                                Related Specie
+                              </span>
+                              <div class="thumbnail">
+                                  <img src="img/species/{{newArticle.code.specie.img}}"  class="img-responsive" alt="foto specie">
+
+                              </div> 
+                        </div>
+                        
                         <span class="input-group-addon input-lg">
                           Abstract
                         </span>
-                        <textarea  class="form-control" rows="4"></textarea>
+                            <textarea  class="form-control" name="newAbstract" rows="4" maxlength="1000" ng-model="newArticle.abstract" required></textarea>
+                            <div ng-messages="articleCreateForm.newAbstract.$error" ng-if='articleCreateForm.newAbstract.$dirty' style="color:maroon" role="alert">
+                                <div ng-message="required">This is required.</div>    
+                                <div ng-message="maxlength">Title length must to be less than 1000</div>   
+                            </div>
                 </div>
+                
                 <div class=" panel-footer">
-                    <input type="submit" value="Create" class="btn btn-info btn-block btn-lg">
+                    <input type="submit" value="Create" class="btn btn-info btn-block btn-lg" ng-disabled="articleCreateForm.$invalid" ng-click="ArtCtrl.createArticle()">
                     <input type="reset" value="reset" class="btn btn-warning btn-block btn-lg">
                 </div>
              </div>

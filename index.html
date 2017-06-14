@@ -57,7 +57,7 @@
     </head>
     <body ng-controller="BioLifeController as BioLifeCtrl" ng-init="BioLifeCtrl.sessionControl()">
         <div  class="container-fluid" id="divFullContent" >
-            <div ng-controller="ArticleController as ArtCtrl" ng-init="ArtCtrl.loadArticles()">
+            <div ng-controller="ArticleController as ArtCtrl" ng-init="ArtCtrl.loadArticles();ArtCtrl.loadCodes()">
                 <header id="mainHeader" class="col-lg-12 well asideClosed">
                    <div class="row">
                         <div class="col-xs-12  col-lg-4 "></div>
@@ -72,7 +72,7 @@
                             </div>
                             
                                 <div id="cartBtnDiv" class="dropdown" ng-show="$parent.userlogged==1" >
-                                  <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false" ><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                    <button class="btn btn-warning dropdown-toggle" id="cartBtn" data-toggle="dropdown" role="button" aria-expanded="false" ><span class="badge">{{$parent.codeCookiesArray.length}}</span><span class="glyphicon glyphicon-inbox"> </span></button>
                                          <ul class="dropdown-menu dropdown-cart" role="menu">
                                              <table class="table table-striped">
                                                  <thead>
@@ -99,13 +99,13 @@
                                                  </tbody>
                                              </table>
                                               <div class="divider"></div>
-                                              <p class="text-center" ng-click="$parent.actionView='cart'"><a  href="">View Cart</a></p>
+                                              <p class="text-center" ng-click="$parent.actionView='cart'"><a  href="">View Basket</a></p>
                                          </ul>
                                     </div>
                                      <div id="searchDiv" >
                                         <form  id="formSearch">
                                             <div class="searchbox">
-                                                <input type="search" placeholder="Search" name="search"  ng-change="$parent.actionView='articles'" ng-model="articleNameFilter" class="searchbox-input" onkeyup="buttonUp();" >
+                                                <input type="search" placeholder="Search" name="search"  ng-change="$parent.actionView='articles'" ng-click="userArticleFilter=''" ng-model="articleNameFilter" class="searchbox-input" onkeyup="buttonUp();" >
                                             </div>
                                             <button  class="searchbox-submit" ><span class="glyphicon glyphicon-search icon-size"></button>
                                             <span class="searchbox-icon"><span class="glyphicon glyphicon-search icon-size"></span>
@@ -117,16 +117,17 @@
                          <div class="row">
                             <nav id="mainNavBarDiv" class="col-lg-12">
                                  <ul class="container">
-                                    <li id="homeLi"><a ng-click="$parent.actionView='main'" href=""  id="homeIcon"><span class="glyphicon glyphicon-home icon-size"></a></li>
-                                    <li class="dropdown">
-                                      <a class="dropbtn" href="" ng-click="$parent.actionView='articles'">Articles <span class="glyphicon glyphicon-triangle-bottom"></a>
+                                    <li id="homeLi" ng-class="{active:$parent.actionView=='main'}"><a ng-click="$parent.actionView='main'" href=""  id="homeIcon"><span class="glyphicon glyphicon-home icon-size"></a></li>
+                                    <li class="dropdown" ng-class="{active:$parent.actionView=='articles' ||$parent.actionView=='specieDetails' ||$parent.actionView=='articleDetails'||$parent.actionView=='articleCreate' }">
+                                      <a class="dropbtn" href="" ng-click="$parent.actionView='articles';userArticleFilter=''">Articles <span class="glyphicon glyphicon-triangle-bottom"></a>
                                       <div class="dropdown-content">
-                                        <a href="" ng-click="$parent.actionView='articles';categoryFilter='animal'" >Animals</a>
-                                        <a href="" ng-click="$parent.actionView='articles';categoryFilter='plant'">Plants</a>
+                                        <a href="" ng-click="$parent.actionView='articles';categoryFilter='animal';userArticleFilter=''" >Animals</a>
+                                        <a href="" ng-click="$parent.actionView='articles';categoryFilter='plant';userArticleFilter=''">Plants</a>
                                       </div>
                                     </li>
-                                    <li><a href="" ng-click="$parent.actionView='codes';ArtCtrl.loadCodes()">Genetic Codes</a></li>
-                                   <li><a href="" ng-click="$parent.actionView='contact'" ng-show="$parent.userlogged==1" >Contact</a></li>
+                                    <li ng-class="{active:$parent.actionView=='codes'}"><a href="" ng-click="$parent.actionView='codes'">Genetic Codes</a></li>
+                                    <li ng-class="{active:$parent.actionView=='articlesNoPub'}"><a href="" ng-click="$parent.actionView='articlesNoPub';ArtCtrl.loadArticlesNoPub()" ng-show="$parent.user.getRole()=='moderator'" >Review Articles</a></li>
+                                   <li ng-class="{active:$parent.actionView=='contact'}"><a href="" ng-click="$parent.actionView='contact'" ng-show="$parent.userlogged==1" >Contact</a></li>
 
                                 </ul>
                             </nav>
@@ -147,7 +148,7 @@
                         <article-details-view ng-show="$parent.actionView==='articleDetails'"></article-details-view>
                          <!-- Article Create View-->
                         <article-create-view ng-show="$parent.actionView==='articleCreate'"></article-create-view>
-                    
+                        <articles-no-pub-view ng-show="$parent.actionView==='articlesNoPub'"></article-no-pub-view>
                </div>
                 <div ng-controller="BioToolsController as BioCtrl">
                     <!-- Cart View-->
@@ -195,10 +196,10 @@
                     <div id="loginBtns">
                         <button class="btn btn-info btn-block btn-lg" type='submit' ng-disabled="formConnection.$invalid">LOGIN</button>
                         <span id="forgot-password">
-                        <a href="#" >Forgot the password?</a>
+                        <a href="" >Forgot the password?</a>
                         </span>
                         <span id="registerLink">
-                          <a href="#" data-toggle="modal" data-target="#myModal" >Join us now!</a>
+                          <a href="" data-toggle="modal" data-target="#myModal" >Join us now!</a>
                         </span>
                     </div>
                 </form>
@@ -213,7 +214,7 @@
                     <img src="img/perfil.png" class="img-responsive">
                 </div>
                 <div id="perfilGroupBtn " >
-                     <div class="col-sm-12 col-lg-6 well">
+                     <div class="col-sm-12 col-md-12 col-lg-6 well">
                          <button class="btn btn-block btn-success btn-lg">My <br>Perfil</button>
                          <button class="btn btn-block btn-primary btn-lg" >My <br>Articles</button>
                         <button class="btn btn-block  btn-basic btn-lg">My <br>Favs</button>

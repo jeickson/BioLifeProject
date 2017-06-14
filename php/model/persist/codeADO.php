@@ -70,7 +70,13 @@ class codeADO implements EntityInterfaceADO {
     public function update($entity) {
         
     }
-
+/**find alls codes of plant species 
+     *  @name findByPlants
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>
+      * @return <none>
+      */
     public static function findByPlants() {
         $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type as typeCode,g.sequence,g.length,g.weight,"
                 . "s.name as nameSpecie,s.description,s.img,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
@@ -80,6 +86,13 @@ class codeADO implements EntityInterfaceADO {
 
          return codeADO::findByQuery( $cons, $arrayValues );
     }
+    /**find alls codes  of animals specie  
+     *  @name findByAnimals
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>
+      * @return <none>
+      */
      public static function findByAnimals() {
         $cons = "select g.id as idCode,g.idSpecie,g.name,g.description as descCode,g.type as typeCode,g.sequence,g.length,g.weight,"
                 . "s.name as nameSpecie,s.description,s.img,l.id as idLivingBeing,l.name as nameLivingBeing,l.type,l.classe,l.family,l.order,l.kingdom,"
@@ -89,7 +102,15 @@ class codeADO implements EntityInterfaceADO {
 
          return codeADO::findByQuery( $cons, $arrayValues );
     }
-
+    /**finds in data base from a query  
+     *  @name findByQuery
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param 
+        * <cons> query that we want to do in DB
+        *<vector> array with values of the prepareStatement 
+      * @return <none>
+      */
     public static function findByQuery($cons, $vector) {
         try {
 			$conn = DBConnect::getInstance();
@@ -104,7 +125,14 @@ class codeADO implements EntityInterfaceADO {
 
 		return codeADO::fromResultSetList( $res );
     }
-
+    /**Create a Object by result of the query previously execute
+     *  @name fromResultSet
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param 
+        * <res> result of execution of query
+      * @return <code> Object code builded 
+      */
     public static function fromResultSet($res) {
        
         //code
@@ -171,7 +199,14 @@ class codeADO implements EntityInterfaceADO {
         
         return $codeObj;
     }
-
+    /**Create a Object by result array of the query previously execute
+     *  @name fromResultSetList
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param 
+        * <res> result of execution of query
+      * @return <$code> code article builded 
+      */
     public static function fromResultSetList($res) {
              $entityList = array();
 		$i=0;

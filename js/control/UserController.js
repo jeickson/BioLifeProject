@@ -40,7 +40,15 @@
 		};
 
 		//Methods
-
+                /**
+		 *@name connection
+		 *@desc if useris correct then create a session in the server
+		 *@author Luis Jeickson Frias Marte
+		 *@version 1.5
+		 *@date 30/05/2017
+		 *@param <none> 
+		 *@return <none>
+            */
 		this.connection = function ()
 		{
 			//copy
@@ -71,7 +79,15 @@
 				}
 			});
 		}
-
+                    /**
+		 *@name Register
+		 *@desc insert a user in the DB
+		 *@author Luis Jeickson Frias Marte
+		 *@version 1.5
+		 *@date 30/05/2017
+		 *@param <none> 
+		 *@return <none>
+            */
 		this.Register = function ()
 		{
 			

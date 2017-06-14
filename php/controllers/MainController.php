@@ -2,7 +2,7 @@
 /**
  * Description of MainController
  * @package    
- * @author     
+ * @author Luis Jeickson Frias Marte   
  * @version    1.0
  * @date: 2017-05-10
 */

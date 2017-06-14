@@ -47,11 +47,29 @@ class PublicationControllerClass implements ControllerInterface {
 			   break;
 				
 			case 10010:
-                            $outPutData = $this->entryArticle();
+                            if (isset($_SESSION['connectedUser'])) {
+					 $outPutData = $this->entryArticle();
+				}
+                           
                             break;
                          case 10020:
                             $outPutData = $this->getAllCodes();
                             break; 
+                         case 10030:
+                             if ($_SESSION['connectedUser']->getRole()=="moderator") {
+                                $outPutData = $this->getAllArticlesNoPub();
+                             }
+                            break;
+                        case 10040:
+                             if ($_SESSION['connectedUser']->getRole()=="moderator") {
+                                $outPutData = $this->pubArticle();
+                             }
+                            break;
+                        case 10050:
+                             if ($_SESSION['connectedUser']->getRole()=="moderator") {
+                                $outPutData = $this->delArticle();
+                             }
+                            break;
 			default:
 				$errors = array();
 				$outPutData[0]=false;
@@ -64,10 +82,39 @@ class PublicationControllerClass implements ControllerInterface {
 		return $outPutData;
 	}
 
-
+    /**Entries a new register of article in the DB
+     *  @name entryArticle
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>     
+      * @return <$outPutData> array with result to be encode
+      */
 	private function entryArticle(){
-	}
+            $articlesArray = json_decode(stripslashes($this->getJsonData()));
+		$outPutData = array();
+		
+		$articleIds = array();
+                $userObj=$_SESSION['connectedUser'];
+		foreach ($articlesArray as $article) {
+                         $codeObj = new CodeClass();
+                         $codeObj->setId($article->code->id);
+                         
+			$articleObj = new ArticleClass();
+			$articleObj->setAll("", $article->title, $article->abstract,0, $article->date, $userObj,$codeObj);
+			$articleIds[] =ArticleADO::create($articleObj);
 
+		}
+                $outPutData[]= true;
+		$outPutData[] = "Article create correctly, now when a moderator approval it this will be publicate, Thanks You!";
+		return $outPutData;
+	}
+         /**Gets all published article from DB
+     *  @name getAllArticles
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>     
+      * @return <$outPutData> array with result to be encode
+      */
 	private function getAllArticles() {
 		$outPutData = array();
                 
@@ -91,7 +138,43 @@ class PublicationControllerClass implements ControllerInterface {
 
 		return $outPutData;
 	}
-        
+        /**Gets all no published article from DB
+     *  @name getAllArticlesNoPub
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>     
+      * @return <$outPutData> array with result to be encode
+      */
+        private function getAllArticlesNoPub() {
+		$outPutData = array();
+                
+                $artAnimals=ArticleADO::findByAnimalsNoPub();
+                $artPlants=ArticleADO::findByPlantsNoPub();
+                $artArray = array_merge($artAnimals,$artPlants);
+
+		if(count($artArray) == 0) {
+			$outPutData[]= false;
+			$errors = array();
+			$errors[]="No articles to publicate";
+			$outPutData[] = $errors;
+		} else {
+			$outPutData[]= true;
+			$arToLocal = array();
+			foreach ($artArray as $art) {
+				$arToLocal[] = $art->getAll();
+			}
+			$outPutData[] = $arToLocal;
+		}
+
+		return $outPutData;
+	}
+        /**Gets all codes article from DB
+     *  @name getAllCodes
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>     
+      * @return <$outPutData> array with result to be encode
+      */
         private function getAllCodes() {
 		$outPutData = array();
                 
@@ -115,5 +198,45 @@ class PublicationControllerClass implements ControllerInterface {
 
 		return $outPutData;
 	}
+        /**Update rows of aarticle to be published
+        *  @name pubArticle
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>     
+      * @return <$outPutData> array with result to be encode
+      */
+        private function pubArticle(){
+                $articlesArray = json_decode(stripslashes($this->getJsonData()));
+		$outPutData = array();
+		
+		$articleIds = array();
+                $articleObj= new ArticleClass();
+                $articleObj->setId($articlesArray[0]->id);
+                ArticleADO::updatePub($articleObj);
+                
+                 $outPutData[]= true;
+		$outPutData[] = "Article published correctly";
+		return $outPutData;
+        }
+         /** Delete article of DB
+        *  @name delArticle
+      * @author Luis Jeickson Frias Marte
+      * @version 1.1
+      * @param <none>     
+      * @return <$outPutData> array with result to be encode
+      */
+        private function delArticle(){
+                $articlesArray = json_decode(stripslashes($this->getJsonData()));
+		$outPutData = array();
+		
+		$articleIds = array();
+                $articleObj= new ArticleClass();
+                $articleObj->setId($articlesArray[0]->id);
+                ArticleADO::delete($articleObj);
+                
+                 $outPutData[]= true;
+		$outPutData[] = "Article deleted correctly";
+		return $outPutData;
+        }
 }
 ?>

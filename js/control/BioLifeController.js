@@ -20,7 +20,16 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
       $scope.expires;
       $scope.secure;  
       $scope.codeCookiesArray=[];
-
+      //Methods
+      /**
+		 *@name loadCookiesCode
+		 *@desc load all cookies user save previously 
+		 *@author Luis Jeickson Frias Marte
+		 *@version 1.5
+		 *@date 30/05/2017
+		 *@param <none> 
+		 *@return <none>
+	*/
        $scope.loadCookiesCode=function(){
              var numberCookies = $cookies.get($scope.generalName,{path:$scope.path});
 
@@ -84,7 +93,15 @@ angular.module("BioLifeApp").controller("BioLifeController",['$scope', '$window'
 
         }
         
-        
+        /**
+		 *@name asideOpenClose
+		 *@desc open/ close  user section 
+		 *@author Luis Jeickson Frias Marte
+		 *@version 1.5
+		 *@date 30/05/2017
+		 *@param <none> 
+		 *@return <none>
+	*/
        $scope.asideOpenClose=function(){
             
             if(!$scope.loginView){

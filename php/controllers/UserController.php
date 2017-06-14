@@ -72,7 +72,13 @@ class UserControllerClass implements ControllerInterface {
 
 		return $outPutData;
 	}
-
+    /**Entries a new user in DB
+        *  @name entryUser
+         * @author Luis Jeickson Frias Marte
+         * @version 1.1
+         * @param <none>     
+         * @return <$outPutData> array with result to be encode
+         */
 
 	private function entryUser()
 	{
@@ -105,7 +111,13 @@ class UserControllerClass implements ControllerInterface {
 
 		return $outPutData;
 	}
-
+        /**modifies  user in DB
+        *  @name modifyUser
+         * @author Luis Jeickson Frias Marte
+         * @version 1.1
+         * @param <none>     
+         * @return <$outPutData> array with result to be encode
+         */
 	private function modifyUser()
 	{
 		//Films modification
@@ -122,7 +134,13 @@ class UserControllerClass implements ControllerInterface {
 
 		return $outPutData;
 	}
-
+        /**I user introduced by user is correct then this create a session 
+        *  @name userConnection
+         * @author Luis Jeickson Frias Marte
+         * @version 1.1
+         * @param <none>     
+         * @return <$outPutData> array with result to be encode
+         */
 
 	private function userConnection()
 	{
@@ -157,7 +175,13 @@ class UserControllerClass implements ControllerInterface {
 
 		return $outPutData;
 	}
-
+        /**Chech if the user have an active  session
+        *  @name sessionControl
+         * @author Luis Jeickson Frias Marte
+         * @version 1.1
+         * @param <none>     
+         * @return <$outPutData> array with result to be encode
+         */
 	private function sessionControl()
 	{
 		$outPutData = array();
@@ -176,27 +200,7 @@ class UserControllerClass implements ControllerInterface {
 
 		return 	$outPutData;
 	}
-
-	private function getAllUsers() {
-		$outPutData = array();
-
-		$usersArray = UserADO::findAll();
-
-		if(count($usersArray) == 0) {
-			$outPutData[]= false;
-			$errors = array();
-			$errors[]="No reviews found in the database";
-			$outPutData[] = $errors;
-		} else {
-			$outPutData[]= true;
-			$usersToLocal = array();
-			foreach ($usersArray as $user) {
-				$usersToLocal[] = $user->getAll();
-			}
-			$outPutData[] = $usersToLocal;
-		}
-
-		return $outPutData;
-	}
+        
+	
 }
 ?>

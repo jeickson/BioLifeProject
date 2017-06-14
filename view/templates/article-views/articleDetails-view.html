@@ -15,8 +15,8 @@
                     <p class="h4"><strong>Related Specie:</strong></p>
                
                 <div class="col-md-3">
-                    <a href=""  ng-click="ArtCtrl.specieDetailsView(articleSelected.code.specie)" class="thumbnail" ><img src="img/species/{{articleSelected.code.specie.img}}" alt=""></a>
-                     
+                    <a href=""  ng-show="articleSelected.code.specie.img!=undefined && articleSelected.code.specie.img!=''" ng-click="ArtCtrl.specieDetailsView(articleSelected.code.specie)" class="thumbnail" ><img src="img/species/{{articleSelected.code.specie.img}}" alt="">
+                     <img src="http://placehold.it/260x180" ng-show="articleSelected.code.specie.img==undefined || articleSelected.code.specie.img==''" ></a>
                 </div> 
                
                <div class="col-lg-12">
@@ -49,13 +49,23 @@
                                  <td>{{articleSelected.code.getLength()}}</td>
                                  <td>{{articleSelected.code.getWeight()}} <span ng-show="articleSelected.code.getWeight()!=undefined && articleSelected.code.getWeight()!=''">Da</span></td>
                                  <td class="text-center" ng-show="$parent.userlogged==1">
-                                     <button class="btn btn-success " ng-click="ArtCtrl.addCookieCode(articleSelected.code)"><span class="glyphicon glyphicon-shopping-cart"></span></button>
+                                     <button class="btn btn-success " ng-click="ArtCtrl.addCookieCode(articleSelected.code)"><span class="glyphicon glyphicon-log-in"></span></button>
                                  </td>
                              </tr>
                          </tbody>
                     </table>
                </div>
-               
+                <div ng-show="$parent.user.getRole()=='moderator'" class="col-lg-12">
+                            <div class="alert alert-success " ng-show="optionArtSuccss">
+                                   {{optionArtMSSG}}
+                            </div>
+                            <div class="alert alert-warning " ng-show="optionArtErr">
+                                           {{optionArtMSSG}}
+                            </div> 
+                            <button class="btn btn-primary btn-block" ng-show="articleSelected.getStatus()==0" ng-click="ArtCtrl.approvalArticle(articleSelected.getId())">Approval</button>
+                            <button class="btn btn-danger btn-block" ng-click="ArtCtrl.delArticle(articleSelected.getId())">Delete</button>
+                    </div>
+                    
            </div>
     </div>
 </main>

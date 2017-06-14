@@ -1,8 +1,8 @@
 <?php
 /** userClass.php
  * Entity userClass
- * author
- * version 2012/09
+ * author Luis Jeickson Frias Marte
+ * version 2017
  */
 require_once "BDDawBio.php";
 require_once "EntityInterfaceADO.php";
